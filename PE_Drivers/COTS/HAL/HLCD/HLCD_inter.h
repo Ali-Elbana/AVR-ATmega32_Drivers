@@ -1,0 +1,95 @@
+/*
+ * LCD_interface.h
+ *
+ *  Created on: Sep 11, 2021
+ *      Author: Ali El Bana
+ */
+
+#ifndef LCD_LCD_INTERFACE_H_
+#define LCD_LCD_INTERFACE_H_
+
+
+#include "../../LIB/LSTD_TYPES.h"
+
+
+
+void HLCD_vInit 					( void ) 		 						;
+
+void HLCD_vSendCommand				( u8 A_u8Cmd ) 							;
+
+void HLCD_vSendData					( u8 A_u8Data )							;
+
+void HLCD_vClear					( void )								;
+
+void HLCD_vDispString				( c8 *A_c8Char )						;
+
+void HLCD_vDispNumber				( s32 A_s32Num )						;
+
+void HLCD_vSaveCustomChar			( u8 A_u8Address, u8 *A_u8CustomChar ) 	;
+
+void HLCD_vSaveDispChar				( u8 A_u8Address, u8 *A_u8CustomChar ) 	;
+
+void HLCD_vGoTo						( u8 A_u8Row, u8 A_u8Col )				;
+
+void HLCD_vSetShiftLeftOn			(void)									;
+
+void HLCD_vSetDispOFF				(void)									;
+
+void HLCD_vDispCursorWithBlinking	(void)									;
+
+void HLCD_vSetCursorBlinkingOFF		(void)									;
+
+void HLCD_vDispShiftLeftString		( c8 *A_c8Char )						;
+
+
+
+#define MAX_IDX_OF_ROWS  1
+
+#define MAX_IDX_OF_COL   15
+
+
+
+
+
+#define HLCD_LINE1		0
+
+#define HLCD_LINE2		1
+
+
+#define HLCD_Square1	0
+
+#define HLCD_Square2	1
+
+#define HLCD_Square3	2
+
+#define HLCD_Square4	3
+
+#define HLCD_Square5	4
+
+#define HLCD_Square6	5
+
+#define HLCD_Square7	6
+
+#define HLCD_Square8	7
+
+#define HLCD_Square9	8
+
+#define HLCD_Square10	9
+
+#define HLCD_Square11	10
+
+#define HLCD_Square12	11
+
+#define HLCD_Square13	12
+
+#define HLCD_Square14	13
+
+#define HLCD_Square15	14
+
+#define HLCD_Square16	15
+
+
+
+
+
+#endif /* LCD_LCD_INTERFACE_H_ */
