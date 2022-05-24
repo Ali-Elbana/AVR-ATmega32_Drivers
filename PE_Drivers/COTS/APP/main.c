@@ -18,9 +18,9 @@
 
 #define KEYPAD 		STOP
 
-#define LCD			STOP
+#define LCD		STOP
 
-#define MOVING_NAME RUN
+#define MOVING_NAME 	RUN
 
 
 
@@ -38,7 +38,7 @@ int main(void)
 {
 
 
-	s8 L_s8KeyValue = -1 			;
+	s8 L_s8KeyValue = -1 		;
 
 	s8 L_s8PositionX = HLCD_Square8 ;
 
