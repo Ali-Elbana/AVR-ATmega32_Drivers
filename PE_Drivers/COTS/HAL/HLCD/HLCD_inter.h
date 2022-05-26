@@ -42,12 +42,13 @@ void HLCD_vSetCursorBlinkingOFF		(void)									;
 void HLCD_vDispShiftLeftString		( c8 *A_c8Char )						;
 
 
+#define MIN_IDX_OF_ROWS  0
 
 #define MAX_IDX_OF_ROWS  1
 
+#define MIN_IDX_OF_COL   0
+
 #define MAX_IDX_OF_COL   15
-
-
 
 
 
@@ -87,6 +88,40 @@ void HLCD_vDispShiftLeftString		( c8 *A_c8Char )						;
 #define HLCD_Square15	14
 
 #define HLCD_Square16	15
+
+
+
+
+
+
+#define CGRAM_AddressOfPattern0	0
+
+#define CGRAM_AddressOfPattern1	1
+
+#define CGRAM_AddressOfPattern2	2
+
+#define CGRAM_AddressOfPattern3	3
+
+#define CGRAM_AddressOfPattern4	4
+
+#define CGRAM_AddressOfPattern5	5
+
+#define CGRAM_AddressOfPattern7	6
+
+#define CGRAM_AddressOfPattern8	7
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

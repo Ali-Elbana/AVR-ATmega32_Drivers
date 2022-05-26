@@ -18,9 +18,10 @@
 
 #define KEYPAD 		STOP
 
-#define LCD		STOP
+#define LCD			STOP
 
-#define MOVING_NAME 	RUN
+#define MOVING_NAME RUN
+
 
 
 
@@ -38,7 +39,7 @@ int main(void)
 {
 
 
-	s8 L_s8KeyValue = -1 		;
+	s8 L_s8KeyValue = -1 			;
 
 	s8 L_s8PositionX = HLCD_Square8 ;
 
@@ -65,11 +66,11 @@ int main(void)
 	HKEYPAD_vInit ( ) ;
 
 
-	HLCD_vSaveCustomChar( 0, LR_u8Ali ) ;
+	HLCD_vSaveCustomChar( CGRAM_AddressOfPattern0, LR_u8Ali ) ;
 
 	HLCD_vGoTo( L_s8PositionY, L_s8PositionX );
 
-	HLCD_vSendData( 0 ) ;
+	HLCD_vSendData( CGRAM_AddressOfPattern0 ) ;
 
 
 	while( TRUE )
@@ -85,7 +86,7 @@ int main(void)
 
 			L_s8PositionX = HLCD_Square1;
 
-			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( 0 );
+			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( CGRAM_AddressOfPattern0 );
 
 			L_s8KeyValue = -1 ;
 
@@ -135,13 +136,13 @@ int main(void)
 				switch( L_s8KeyValue )
 				{
 
-					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // UP
+					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // UP
 
-					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // DOWN
+					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // DOWN
 
-					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // RIGHT
+					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // RIGHT
 
-					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // LEFT
+					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // LEFT
 
 					default:  break;
 
@@ -162,7 +163,7 @@ int main(void)
 
 			L_s8PositionX = HLCD_Square16;
 
-			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( 0 );
+			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( CGRAM_AddressOfPattern0 );
 
 			L_s8KeyValue = -1 ;
 
@@ -174,13 +175,13 @@ int main(void)
 				switch( L_s8KeyValue )
 				{
 
-					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // UP
+					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // UP
 
-					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // DOWN
+					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // DOWN
 
-					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // RIGHT
+					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // RIGHT
 
-					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // LEFT
+					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // LEFT
 
 					default:  break;
 
@@ -201,7 +202,7 @@ int main(void)
 
 			L_s8PositionY = HLCD_LINE2 ;
 
-			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( 0 );
+			 HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( CGRAM_AddressOfPattern0 );
 
 			L_s8KeyValue = -1 ;
 
@@ -213,13 +214,13 @@ int main(void)
 				switch( L_s8KeyValue )
 				{
 
-					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // UP
+					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // UP
 
-					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // DOWN
+					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // DOWN
 
-					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // RIGHT
+					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // RIGHT
 
-					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // LEFT
+					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // LEFT
 
 					default:  break;
 
@@ -234,7 +235,7 @@ int main(void)
 		else
 		{
 
-			HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( 0 );
+			HLCD_vGoTo( L_s8PositionY, L_s8PositionX ); HLCD_vSendData( CGRAM_AddressOfPattern0 );
 
 			L_s8KeyValue = -1 ;
 
@@ -249,13 +250,13 @@ int main(void)
 
 
 
-					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // UP
+					case K2:  HLCD_vClear() ; HLCD_vGoTo( -- L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // UP
 
-					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // DOWN
+					case K10: HLCD_vClear() ; HLCD_vGoTo( ++ L_s8PositionY ,    L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // DOWN
 
-					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // RIGHT
+					case K7:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , ++ L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // RIGHT
 
-					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( 0 ) ; break; // LEFT
+					case K5:  HLCD_vClear() ; HLCD_vGoTo(    L_s8PositionY , -- L_s8PositionX  ); HLCD_vSendData( CGRAM_AddressOfPattern0 ) ; break; // LEFT
 
 					default:  break;
 

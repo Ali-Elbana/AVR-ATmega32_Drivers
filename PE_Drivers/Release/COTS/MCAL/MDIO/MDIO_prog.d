@@ -1,0 +1,14 @@
+COTS/MCAL/MDIO/MDIO_prog.o COTS/MCAL/MDIO/MDIO_prog.o:  \
+ ../COTS/MCAL/MDIO/MDIO_prog.c ../COTS/MCAL/MDIO/../../LIB/LSTD_TYPES.h \
+  ../COTS/MCAL/MDIO/../../LIB/LBITMATH.h ../COTS/MCAL/MDIO/MDIO_config.h \
+  ../COTS/MCAL/MDIO/MDIO_private.h ../COTS/MCAL/MDIO/MDIO_inter.h
+
+../COTS/MCAL/MDIO/../../LIB/LSTD_TYPES.h:
+
+../COTS/MCAL/MDIO/../../LIB/LBITMATH.h:
+
+../COTS/MCAL/MDIO/MDIO_config.h:
+
+../COTS/MCAL/MDIO/MDIO_private.h:
+
+../COTS/MCAL/MDIO/MDIO_inter.h:

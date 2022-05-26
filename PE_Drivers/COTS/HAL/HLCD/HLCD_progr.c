@@ -180,18 +180,12 @@ void HLCD_vDispNumber(s32 A_s32Num)
 {
 
 
-	u8 count   =  0  ;
+	u8 L_u8Counter 		=  	0  	;
 
-	u8 arr[10] = {0} ;
-
-
-	if( A_s32Num == 0 )
-	{
-		HLCD_vSendData( '0' ) ;
-
-	}
+	u8 LR_u8Digits[10] 	= 	{0} ;
 
 
+	// In case the number is signed.
 	if ( A_s32Num < 0 )
 	{
 
@@ -202,27 +196,32 @@ void HLCD_vDispNumber(s32 A_s32Num)
 	}
 
 
-	for( u8 i = 0 ; A_s32Num != 0 ; i++ )
+	// In case the number the number contains zeros.
+	if( A_s32Num == 0 )
+	{
+		HLCD_vSendData( '0' ) ;
+
+	}
+
+
+	// Save reversed digits in the array.
+	for( L_u8Counter = 0 ; A_s32Num != 0 ; L_u8Counter++ )
 	{
 
-		count++ ;
-
-		arr[i] = A_s32Num % 10 ;
+		LR_u8Digits[L_u8Counter] = A_s32Num % 10 ;
 
 		A_s32Num /= 10 ;
 
-
 	}
 
-	// For arrangement
-	for ( s8 i = (count-1) ; i >= 0 ; i-- )
+
+	// For arrangement the digits.
+	for ( s8 j = (L_u8Counter-1) ; j >= 0 ; j-- )
 	{
 
-		HLCD_vSendData( '0' + arr[i] ) ;
-
+		HLCD_vSendData( '0' + LR_u8Digits[L_u8Counter] ) ;
 
 	}
-
 
 
 
@@ -276,18 +275,19 @@ void HLCD_vDispNumber(s32 A_s32Num)
 void HLCD_vSaveCustomChar( u8 A_u8Address, u8 *A_u8CustomChar )
 {
 
-	HLCD_vSendCommand( 0x40 + (8*A_u8Address) ) ; //save in CGRAM
+	// 1-Set CGRAM Address.
+	HLCD_vSendCommand( SET_CGRAM_AC_MASK + (NumOf_CGRAM_Patterns * A_u8Address) ) ;
 
-
-	for( u8 L_u8I = 0 ; L_u8I <8 ; L_u8I++ )
+	// 2- Send custom char data.
+	for( u8 L_u8I = FirstByteInCGRAM_Pattern ; L_u8I < LastByteInCGRAM_Pattern ; L_u8I++ )
 	{
 
 		HLCD_vSendData( A_u8CustomChar[L_u8I] ) ;
 
 	}
 
-
-	HLCD_vSendCommand( 0x80 ) ; //Set DDRAM address
+	// 3-Set DDRAM address
+	HLCD_vSendCommand( SET_DDRAM_AC_MASK ) ;
 
 }
 
@@ -309,10 +309,10 @@ void HLCD_vGoTo( u8 A_u8Row, u8 A_u8Col )
 		switch( A_u8Row )
 		{
 
-			case 0:	HLCD_vSendCommand( 0x80 + A_u8Col + 0 )  ; break;
+			case 0:	HLCD_vSendCommand( SET_DDRAM_AC_MASK + A_u8Col + FIRST_ROW_START ) ; break;
 
 
-			case 1: HLCD_vSendCommand( 0X80 + A_u8Col + 64 ) ; break;
+			case 1: HLCD_vSendCommand( SET_DDRAM_AC_MASK + A_u8Col + SEC_ROW_START 	 ) ; break;
 
 
 		}

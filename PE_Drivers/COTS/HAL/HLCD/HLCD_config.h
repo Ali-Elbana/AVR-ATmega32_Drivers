@@ -49,6 +49,21 @@
 
 
 
+#define FIRST_ROW_IDX   			0
+
+#define FIRST_ROW_START 			0x00
+
+#define SEC_ROW_START   			0x40
+
+#define SET_DDRAM_AC_MASK   		0x80
+
+#define SET_CGRAM_AC_MASK			0x40
+
+#define NumOf_CGRAM_Patterns 		8
+
+#define FirstByteInCGRAM_Pattern	0
+
+#define LastByteInCGRAM_Pattern		8
 
 
 

@@ -1,0 +1,446 @@
+Archive member included because of file (symbol)
+
+d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                              ./COTS/HAL/HLCD/HLCD_progr.o (__divmodhi4)
+d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
+d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              ./COTS/HAL/HSSD/HSSD_prog.o (__do_copy_data)
+d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                              d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o) (__udivmodhi4)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+LOAD ./COTS/MCAL/MDIO/MDIO_prog.o
+LOAD ./COTS/HAL/HSSD/HSSD_prog.o
+LOAD ./COTS/HAL/HLCD/HLCD_progr.o
+LOAD ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+LOAD ./COTS/APP/main.o
+LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xaaa
+ *(.vectors)
+ .vectors       0x00000000       0x54 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000054                . = ALIGN (0x2)
+                0x00000054                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000054        0x0 linker stubs
+ *(.trampolines*)
+                0x00000054                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000054                __ctors_start = .
+ *(.ctors)
+                0x00000054                __ctors_end = .
+                0x00000054                __dtors_start = .
+ *(.dtors)
+                0x00000054                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000054        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x00000054                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000054        0xc d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000060       0x16 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x00000060                __do_copy_data
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000076        0x8 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ *(.init9)
+ *(.text)
+ .text          0x0000007e        0x4 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+                0x0000007e                __vector_1
+                0x0000007e                __vector_12
+                0x0000007e                __bad_interrupt
+                0x0000007e                __vector_6
+                0x0000007e                __vector_3
+                0x0000007e                __vector_11
+                0x0000007e                __vector_13
+                0x0000007e                __vector_17
+                0x0000007e                __vector_19
+                0x0000007e                __vector_7
+                0x0000007e                __vector_5
+                0x0000007e                __vector_4
+                0x0000007e                __vector_9
+                0x0000007e                __vector_2
+                0x0000007e                __vector_15
+                0x0000007e                __vector_8
+                0x0000007e                __vector_14
+                0x0000007e                __vector_10
+                0x0000007e                __vector_16
+                0x0000007e                __vector_18
+                0x0000007e                __vector_20
+ .text          0x00000082        0x0 ./COTS/MCAL/MDIO/MDIO_prog.o
+ .text          0x00000082        0x0 ./COTS/HAL/HSSD/HSSD_prog.o
+ .text          0x00000082        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
+ .text          0x00000082        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .text          0x00000082        0x0 ./COTS/APP/main.o
+ .text          0x00000082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+ .text          0x00000082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00000082                . = ALIGN (0x2)
+ *(.text.*)
+ .text.MDIO_vSetPinDirection
+                0x00000082       0xe6 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x00000082                MDIO_vSetPinDirection
+ .text.MDIO_vSetPortDirection
+                0x00000168       0x22 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x00000168                MDIO_vSetPortDirection
+ .text.MDIO_vSetPinValue
+                0x0000018a       0xe6 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x0000018a                MDIO_vSetPinValue
+ .text.MDIO_vSetPortValue
+                0x00000270       0x22 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x00000270                MDIO_vSetPortValue
+ .text.MDIO_u8GetPinValue
+                0x00000292       0x40 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x00000292                MDIO_u8GetPinValue
+ .text.MDIO_u8GetPortValue
+                0x000002d2       0x24 ./COTS/MCAL/MDIO/MDIO_prog.o
+                0x000002d2                MDIO_u8GetPortValue
+ .text.HSSD_vTurnOFF
+                0x000002f6       0x2e ./COTS/HAL/HSSD/HSSD_prog.o
+                0x000002f6                HSSD_vTurnOFF
+ .text.HSSD_vDispNum
+                0x00000324       0x5e ./COTS/HAL/HSSD/HSSD_prog.o
+                0x00000324                HSSD_vDispNum
+ .text.HLCD_vSendData
+                0x00000382       0x5c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x00000382                HLCD_vSendData
+ .text.HLCD_vDispNumber
+                0x000003de       0xae ./COTS/HAL/HLCD/HLCD_progr.o
+                0x000003de                HLCD_vDispNumber
+ .text.HLCD_vDispString
+                0x0000048c       0x26 ./COTS/HAL/HLCD/HLCD_progr.o
+                0x0000048c                HLCD_vDispString
+ .text.HLCD_vSendCommand
+                0x000004b2       0x5c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x000004b2                HLCD_vSendCommand
+ .text.HLCD_vSetCursorBlinkingOFF
+                0x0000050e       0x2c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x0000050e                HLCD_vSetCursorBlinkingOFF
+ .text.HLCD_vDispCursorWithBlinking
+                0x0000053a       0x2c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x0000053a                HLCD_vDispCursorWithBlinking
+ .text.HLCD_vSetDispOFF
+                0x00000566       0x2c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x00000566                HLCD_vSetDispOFF
+ .text.HLCD_vSetShiftLeftOn
+                0x00000592       0x2c ./COTS/HAL/HLCD/HLCD_progr.o
+                0x00000592                HLCD_vSetShiftLeftOn
+ .text.HLCD_vDispShiftLeftString
+                0x000005be       0x5a ./COTS/HAL/HLCD/HLCD_progr.o
+                0x000005be                HLCD_vDispShiftLeftString
+ .text.HLCD_vGoTo
+                0x00000618       0x26 ./COTS/HAL/HLCD/HLCD_progr.o
+                0x00000618                HLCD_vGoTo
+ .text.HLCD_vSaveCustomChar
+                0x0000063e       0x3e ./COTS/HAL/HLCD/HLCD_progr.o
+                0x0000063e                HLCD_vSaveCustomChar
+ .text.HLCD_vClear
+                0x0000067c       0x16 ./COTS/HAL/HLCD/HLCD_progr.o
+                0x0000067c                HLCD_vClear
+ .text.HLCD_vInit
+                0x00000692       0x8a ./COTS/HAL/HLCD/HLCD_progr.o
+                0x00000692                HLCD_vInit
+ .text.HKEYPAD_u8Getpressed
+                0x0000071c       0x8e ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+                0x0000071c                HKEYPAD_u8Getpressed
+ .text.HKEYPAD_vInit
+                0x000007aa       0x12 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+                0x000007aa                HKEYPAD_vInit
+ .text.main     0x000007bc      0x29c ./COTS/APP/main.o
+                0x000007bc                main
+ .text.libgcc   0x00000a58       0x26 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x00000a58                __divmodhi4
+                0x00000a58                _div
+ .text.libgcc   0x00000a7e        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000a7e        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000a7e       0x28 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x00000a7e                __udivmodhi4
+                0x00000aa6                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000aa6        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000aa6                exit
+                0x00000aa6                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000aa6        0x4 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000aaa                _etext = .
+
+.data           0x00800060       0x22 load address 0x00000aaa
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .data          0x00800060        0x0 ./COTS/MCAL/MDIO/MDIO_prog.o
+ .data          0x00800060        0x0 ./COTS/HAL/HSSD/HSSD_prog.o
+ .data          0x00800060        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
+ .data          0x00800060        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .data          0x00800060        0x0 ./COTS/APP/main.o
+ .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+ .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ *(.data*)
+ .data.kmap     0x00800060       0x10 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+                0x00800060                kmap
+ *(.rodata)
+ *(.rodata*)
+ .rodata.SCG_u8SSD_Nums
+                0x00800070        0xa ./COTS/HAL/HSSD/HSSD_prog.o
+ .rodata.C.0.1343
+                0x0080007a        0x8 ./COTS/APP/main.o
+ *(.gnu.linkonce.d*)
+                0x00800082                . = ALIGN (0x2)
+                0x00800082                _edata = .
+                0x00800082                PROVIDE (__data_end, .)
+
+.bss            0x00800082        0x0
+                0x00800082                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
+ .bss           0x00800082        0x0 ./COTS/MCAL/MDIO/MDIO_prog.o
+ .bss           0x00800082        0x0 ./COTS/HAL/HSSD/HSSD_prog.o
+ .bss           0x00800082        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
+ .bss           0x00800082        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .bss           0x00800082        0x0 ./COTS/APP/main.o
+ .bss           0x00800082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+ .bss           0x00800082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800082        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ *(.bss*)
+ *(COMMON)
+                0x00800082                PROVIDE (__bss_end, .)
+                0x00000aaa                __data_load_start = LOADADDR (.data)
+                0x00000acc                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800082        0x0
+                0x00800082                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800082                PROVIDE (__noinit_end, .)
+                0x00800082                _end = .
+                0x00800082                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(PE_Drivers.elf elf32-avr)
+LOAD linker stubs
