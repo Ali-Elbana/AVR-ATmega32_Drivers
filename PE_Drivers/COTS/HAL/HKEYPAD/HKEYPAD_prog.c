@@ -60,21 +60,21 @@ u8 HKEYPAD_u8Getpressed( void )
 
 
 
-	u8 L_u8PressedKey = -1 ;
+	u8 L_u8PressedKey = HBUTTON_NotPressed ;
 
 
-	for(u8 L_u8Column = Initialized_by_Zero ; L_u8Column <4 ; L_u8Column++ )
+	for(u8 L_u8Column = Initialized_by_Zero ; L_u8Column < 4 ; L_u8Column++ )
 	{
 
 		MDIO_vSetPinValue( HKEYPAD_PORT, L_u8Column, MDIO_PIN_LOW ) ;
 
 
-		for( u8 L_u8Row = Initialized_by_Zero ; L_u8Row <4 ; L_u8Row++ )
+		for( u8 L_u8Row = Initialized_by_Zero ; L_u8Row < 4 ; L_u8Row++ )
 		{
 
 
 			// Button is pressed
-			if( MDIO_u8GetPinValue(HKEYPAD_PORT, L_u8Row+4) == HBUTTON_Pressed )
+			if( MDIO_u8GetPinValue(HKEYPAD_PORT, L_u8Row + 4) == HBUTTON_Pressed )
 			{
 
 
@@ -84,7 +84,7 @@ u8 HKEYPAD_u8Getpressed( void )
 			}
 
 
-			while( MDIO_u8GetPinValue(HKEYPAD_PORT, L_u8Row+4) == HBUTTON_Pressed ) ;
+			while( MDIO_u8GetPinValue(HKEYPAD_PORT, L_u8Row + 4) == HBUTTON_Pressed ) ;
 
 			_delay_ms(5);
 
@@ -101,3 +101,7 @@ u8 HKEYPAD_u8Getpressed( void )
 
 
 }
+
+
+
+

@@ -12,15 +12,107 @@
 #include "../HAL/HSSD/HSSD_inter.h"
 #include "../HAL/HKEYPAD/HKEYPAD_inter.h"
 #include "../HAL/HLCD/HLCD_inter.h"
+#include "../HAL/HDCM/HDCM_interface.h"
 
 #include "util/delay.h"
 
 
-#define KEYPAD 		STOP
+#define KEYPAD 			STOP
 
-#define LCD			STOP
+#define LCD				STOP
 
-#define MOVING_NAME RUN
+#define MOVING_NAME 	STOP
+
+#define Stepper_Motor 	STOP
+
+#define DC_MOTOR 		RUN
+
+
+
+
+
+
+#if DC_MOTOR == RUN
+
+
+int main(void)
+{
+
+
+
+
+	while( TRUE )
+	{
+
+		HDCM_vRotateMotor ( MDIO_PORTA, MDIO_PIN0, MDIO_PIN2, CW ) 	 ;
+
+		HDCM_vRotateMotor ( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2, CCW  ) ;
+
+	}
+
+
+
+}
+
+
+
+#endif
+
+
+
+
+
+
+
+#if Stepper_Motor == RUN
+
+
+
+int main(void)
+{
+
+
+
+	MDIO_vSetPortDirection	( MDIO_PORTA, MDIO_SET_NibbleLow ) ;
+
+
+
+	u8 LR_u8Steps[4] = { 1, 2, 4, 8 };
+
+
+
+	while( TRUE )
+	{
+
+		for( u8 L_u8J = 0 ; L_u8J < 16 ; L_u8J++ )
+		{
+
+			for( u8 L_u8I = 0 ; L_u8I < 4 ; L_u8I++ )
+			{
+
+
+				MDIO_vSetPortValue( MDIO_PORTA, LR_u8Steps[ L_u8I ] );
+
+				_delay_ms( 3 ) ;
+
+
+			}
+
+
+		}
+
+
+	}
+
+
+
+}
+
+
+
+#endif
+
+
 
 
 
@@ -45,21 +137,7 @@ int main(void)
 
 	s8 L_s8PositionY = HLCD_LINE1	;
 
-	u8 LR_u8Ali[]=
-	{
-
-		0b00000100,
-		0b00000100,
-		0b00001101,
-		0b00010110,
-		0b00010111,
-		0b00010000,
-		0b00001000,
-		0b00000100
-
-	};
-
-
+	u8 LR_u8Ali[] = { 0b00000100, 0b00000100, 0b00001101, 0b00010110, 0b00010111, 0b00010000, 0b00001000, 0b00000100 };
 
 	HLCD_vInit    ( ) ;
 
@@ -285,6 +363,14 @@ int main(void)
 
 
 #endif
+
+
+
+
+
+
+
+
 
 
 
@@ -828,6 +914,15 @@ int main(void)
 
 
 #endif
+
+
+
+
+
+
+
+
+
 
 
 

@@ -22,6 +22,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 COTS/APP \
+COTS/HAL/HDCM \
 COTS/HAL/HKEYPAD \
 COTS/HAL/HLCD \
 COTS/HAL/HSSD \

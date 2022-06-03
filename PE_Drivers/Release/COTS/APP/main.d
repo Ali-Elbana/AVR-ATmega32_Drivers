@@ -8,7 +8,8 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../HAL/HKEYPAD/HKEYPAD_inter.h \
   ../COTS/APP/../HAL/HKEYPAD/../../LIB/LSTD_TYPES.h \
   ../COTS/APP/../HAL/HLCD/HLCD_inter.h \
-  ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h
+  ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h \
+  ../COTS/APP/../HAL/HDCM/HDCM_interface.h
 
 ../COTS/APP/../LIB/LBITMATH.h:
 
@@ -31,3 +32,5 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 ../COTS/APP/../HAL/HLCD/HLCD_inter.h:
 
 ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h:
+
+../COTS/APP/../HAL/HDCM/HDCM_interface.h:

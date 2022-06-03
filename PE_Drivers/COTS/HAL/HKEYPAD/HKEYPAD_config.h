@@ -14,11 +14,10 @@
 
 
 
-#define HKEYPAD_PORT MDIO_PORTD
+#define HKEYPAD_PORT 		MDIO_PORTD
 
 
-#define HBUTTON_Pressed ZERO
-
+#define HBUTTON_Pressed 	ZERO
 
 
 

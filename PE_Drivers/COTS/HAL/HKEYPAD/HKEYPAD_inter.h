@@ -41,6 +41,7 @@ u8 	HKEYPAD_u8Getpressed( void ) ;
 
 
 
+#define HBUTTON_NotPressed 	-1
 
 
 
