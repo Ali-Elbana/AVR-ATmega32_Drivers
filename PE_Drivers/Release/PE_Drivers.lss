@@ -3,9 +3,9 @@ PE_Drivers.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000912  00000000  00000000  00000074  2**1
+  0 .text         000008d6  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000001a  00800060  00000912  00000986  2**0
+  1 .data         0000001a  00800060  000008d6  0000094a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
 
 Disassembly of section .text:
@@ -45,8 +45,8 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e2 e1       	ldi	r30, 0x12	; 18
-  68:	f9 e0       	ldi	r31, 0x09	; 9
+  66:	e6 ed       	ldi	r30, 0xD6	; 214
+  68:	f8 e0       	ldi	r31, 0x08	; 8
   6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
 0000006c <.do_copy_data_loop>:
@@ -57,8 +57,8 @@ Disassembly of section .text:
   70:	aa 37       	cpi	r26, 0x7A	; 122
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
-  76:	0e 94 53 04 	call	0x8a6	; 0x8a6 <main>
-  7a:	0c 94 87 04 	jmp	0x90e	; 0x90e <_exit>
+  76:	0e 94 1e 04 	call	0x83c	; 0x83c <main>
+  7a:	0c 94 69 04 	jmp	0x8d2	; 0x8d2 <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -546,12 +546,12 @@ Disassembly of section .text:
  432:	c8 01       	movw	r24, r16
  434:	6a e0       	ldi	r22, 0x0A	; 10
  436:	70 e0       	ldi	r23, 0x00	; 0
- 438:	0e 94 60 04 	call	0x8c0	; 0x8c0 <__divmodhi4>
+ 438:	0e 94 42 04 	call	0x884	; 0x884 <__divmodhi4>
  43c:	80 83       	st	Z, r24
  43e:	c8 01       	movw	r24, r16
  440:	6a e0       	ldi	r22, 0x0A	; 10
  442:	70 e0       	ldi	r23, 0x00	; 0
- 444:	0e 94 60 04 	call	0x8c0	; 0x8c0 <__divmodhi4>
+ 444:	0e 94 42 04 	call	0x884	; 0x884 <__divmodhi4>
  448:	8b 01       	movw	r16, r22
  44a:	4f 5f       	subi	r20, 0xFF	; 255
  44c:	01 15       	cp	r16, r1
@@ -995,179 +995,154 @@ Disassembly of section .text:
  7be:	08 95       	ret
 
 000007c0 <HDCM_vStopMotor>:
- 7c0:	1f 93       	push	r17
- 7c2:	14 2f       	mov	r17, r20
- 7c4:	81 30       	cpi	r24, 0x01	; 1
- 7c6:	69 f0       	breq	.+26     	; 0x7e2 <HDCM_vStopMotor+0x22>
- 7c8:	81 30       	cpi	r24, 0x01	; 1
- 7ca:	28 f0       	brcs	.+10     	; 0x7d6 <HDCM_vStopMotor+0x16>
- 7cc:	82 30       	cpi	r24, 0x02	; 2
- 7ce:	79 f0       	breq	.+30     	; 0x7ee <HDCM_vStopMotor+0x2e>
- 7d0:	83 30       	cpi	r24, 0x03	; 3
- 7d2:	e1 f4       	brne	.+56     	; 0x80c <HDCM_vStopMotor+0x4c>
- 7d4:	12 c0       	rjmp	.+36     	; 0x7fa <HDCM_vStopMotor+0x3a>
- 7d6:	80 e0       	ldi	r24, 0x00	; 0
- 7d8:	40 e0       	ldi	r20, 0x00	; 0
- 7da:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 7de:	80 e0       	ldi	r24, 0x00	; 0
- 7e0:	11 c0       	rjmp	.+34     	; 0x804 <HDCM_vStopMotor+0x44>
- 7e2:	81 e0       	ldi	r24, 0x01	; 1
- 7e4:	40 e0       	ldi	r20, 0x00	; 0
- 7e6:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 7ea:	81 e0       	ldi	r24, 0x01	; 1
- 7ec:	0b c0       	rjmp	.+22     	; 0x804 <HDCM_vStopMotor+0x44>
- 7ee:	82 e0       	ldi	r24, 0x02	; 2
- 7f0:	40 e0       	ldi	r20, 0x00	; 0
- 7f2:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 7f6:	82 e0       	ldi	r24, 0x02	; 2
- 7f8:	05 c0       	rjmp	.+10     	; 0x804 <HDCM_vStopMotor+0x44>
- 7fa:	83 e0       	ldi	r24, 0x03	; 3
- 7fc:	40 e0       	ldi	r20, 0x00	; 0
- 7fe:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 802:	83 e0       	ldi	r24, 0x03	; 3
- 804:	61 2f       	mov	r22, r17
- 806:	40 e0       	ldi	r20, 0x00	; 0
- 808:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 80c:	1f 91       	pop	r17
- 80e:	08 95       	ret
+ 7c0:	0f 93       	push	r16
+ 7c2:	1f 93       	push	r17
+ 7c4:	18 2f       	mov	r17, r24
+ 7c6:	04 2f       	mov	r16, r20
+ 7c8:	40 e0       	ldi	r20, 0x00	; 0
+ 7ca:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
+ 7ce:	81 2f       	mov	r24, r17
+ 7d0:	60 2f       	mov	r22, r16
+ 7d2:	40 e0       	ldi	r20, 0x00	; 0
+ 7d4:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
+ 7d8:	1f 91       	pop	r17
+ 7da:	0f 91       	pop	r16
+ 7dc:	08 95       	ret
 
-00000810 <HDCM_vRotateMotor>:
- 810:	ef 92       	push	r14
- 812:	ff 92       	push	r15
- 814:	0f 93       	push	r16
- 816:	1f 93       	push	r17
- 818:	18 2f       	mov	r17, r24
- 81a:	06 2f       	mov	r16, r22
- 81c:	f4 2e       	mov	r15, r20
- 81e:	e2 2e       	mov	r14, r18
- 820:	81 30       	cpi	r24, 0x01	; 1
- 822:	69 f0       	breq	.+26     	; 0x83e <HDCM_vRotateMotor+0x2e>
- 824:	81 30       	cpi	r24, 0x01	; 1
- 826:	28 f0       	brcs	.+10     	; 0x832 <HDCM_vRotateMotor+0x22>
- 828:	82 30       	cpi	r24, 0x02	; 2
- 82a:	79 f0       	breq	.+30     	; 0x84a <HDCM_vRotateMotor+0x3a>
- 82c:	83 30       	cpi	r24, 0x03	; 3
- 82e:	e1 f4       	brne	.+56     	; 0x868 <__stack+0x9>
- 830:	12 c0       	rjmp	.+36     	; 0x856 <HDCM_vRotateMotor+0x46>
- 832:	80 e0       	ldi	r24, 0x00	; 0
- 834:	41 e0       	ldi	r20, 0x01	; 1
- 836:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
- 83a:	80 e0       	ldi	r24, 0x00	; 0
- 83c:	11 c0       	rjmp	.+34     	; 0x860 <__stack+0x1>
- 83e:	81 e0       	ldi	r24, 0x01	; 1
- 840:	41 e0       	ldi	r20, 0x01	; 1
- 842:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
- 846:	81 e0       	ldi	r24, 0x01	; 1
- 848:	0b c0       	rjmp	.+22     	; 0x860 <__stack+0x1>
- 84a:	82 e0       	ldi	r24, 0x02	; 2
- 84c:	41 e0       	ldi	r20, 0x01	; 1
- 84e:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
- 852:	82 e0       	ldi	r24, 0x02	; 2
- 854:	05 c0       	rjmp	.+10     	; 0x860 <__stack+0x1>
- 856:	83 e0       	ldi	r24, 0x03	; 3
- 858:	41 e0       	ldi	r20, 0x01	; 1
- 85a:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
- 85e:	83 e0       	ldi	r24, 0x03	; 3
- 860:	6f 2d       	mov	r22, r15
- 862:	41 e0       	ldi	r20, 0x01	; 1
- 864:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
- 868:	81 e0       	ldi	r24, 0x01	; 1
- 86a:	e8 16       	cp	r14, r24
- 86c:	21 f0       	breq	.+8      	; 0x876 <__stack+0x17>
- 86e:	82 e0       	ldi	r24, 0x02	; 2
- 870:	e8 16       	cp	r14, r24
- 872:	a1 f4       	brne	.+40     	; 0x89c <__stack+0x3d>
- 874:	09 c0       	rjmp	.+18     	; 0x888 <__stack+0x29>
- 876:	81 2f       	mov	r24, r17
- 878:	60 2f       	mov	r22, r16
- 87a:	41 e0       	ldi	r20, 0x01	; 1
- 87c:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 880:	81 2f       	mov	r24, r17
- 882:	6f 2d       	mov	r22, r15
- 884:	40 e0       	ldi	r20, 0x00	; 0
- 886:	08 c0       	rjmp	.+16     	; 0x898 <__stack+0x39>
- 888:	81 2f       	mov	r24, r17
- 88a:	60 2f       	mov	r22, r16
- 88c:	40 e0       	ldi	r20, 0x00	; 0
- 88e:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 892:	81 2f       	mov	r24, r17
- 894:	6f 2d       	mov	r22, r15
- 896:	41 e0       	ldi	r20, 0x01	; 1
- 898:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
- 89c:	1f 91       	pop	r17
- 89e:	0f 91       	pop	r16
- 8a0:	ff 90       	pop	r15
- 8a2:	ef 90       	pop	r14
- 8a4:	08 95       	ret
+000007de <HDCM_vRotateMotor>:
+ 7de:	ef 92       	push	r14
+ 7e0:	ff 92       	push	r15
+ 7e2:	0f 93       	push	r16
+ 7e4:	1f 93       	push	r17
+ 7e6:	18 2f       	mov	r17, r24
+ 7e8:	06 2f       	mov	r16, r22
+ 7ea:	f4 2e       	mov	r15, r20
+ 7ec:	e2 2e       	mov	r14, r18
+ 7ee:	41 e0       	ldi	r20, 0x01	; 1
+ 7f0:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
+ 7f4:	81 2f       	mov	r24, r17
+ 7f6:	6f 2d       	mov	r22, r15
+ 7f8:	41 e0       	ldi	r20, 0x01	; 1
+ 7fa:	0e 94 41 00 	call	0x82	; 0x82 <MDIO_vSetPinDirection>
+ 7fe:	81 e0       	ldi	r24, 0x01	; 1
+ 800:	e8 16       	cp	r14, r24
+ 802:	21 f0       	breq	.+8      	; 0x80c <HDCM_vRotateMotor+0x2e>
+ 804:	82 e0       	ldi	r24, 0x02	; 2
+ 806:	e8 16       	cp	r14, r24
+ 808:	a1 f4       	brne	.+40     	; 0x832 <HDCM_vRotateMotor+0x54>
+ 80a:	09 c0       	rjmp	.+18     	; 0x81e <HDCM_vRotateMotor+0x40>
+ 80c:	81 2f       	mov	r24, r17
+ 80e:	60 2f       	mov	r22, r16
+ 810:	41 e0       	ldi	r20, 0x01	; 1
+ 812:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
+ 816:	81 2f       	mov	r24, r17
+ 818:	6f 2d       	mov	r22, r15
+ 81a:	40 e0       	ldi	r20, 0x00	; 0
+ 81c:	08 c0       	rjmp	.+16     	; 0x82e <HDCM_vRotateMotor+0x50>
+ 81e:	81 2f       	mov	r24, r17
+ 820:	60 2f       	mov	r22, r16
+ 822:	40 e0       	ldi	r20, 0x00	; 0
+ 824:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
+ 828:	81 2f       	mov	r24, r17
+ 82a:	6f 2d       	mov	r22, r15
+ 82c:	41 e0       	ldi	r20, 0x01	; 1
+ 82e:	0e 94 c5 00 	call	0x18a	; 0x18a <MDIO_vSetPinValue>
+ 832:	1f 91       	pop	r17
+ 834:	0f 91       	pop	r16
+ 836:	ff 90       	pop	r15
+ 838:	ef 90       	pop	r14
+ 83a:	08 95       	ret
 
-000008a6 <main>:
- 8a6:	80 e0       	ldi	r24, 0x00	; 0
- 8a8:	60 e0       	ldi	r22, 0x00	; 0
- 8aa:	42 e0       	ldi	r20, 0x02	; 2
- 8ac:	21 e0       	ldi	r18, 0x01	; 1
- 8ae:	0e 94 08 04 	call	0x810	; 0x810 <HDCM_vRotateMotor>
- 8b2:	83 e0       	ldi	r24, 0x03	; 3
- 8b4:	60 e0       	ldi	r22, 0x00	; 0
- 8b6:	42 e0       	ldi	r20, 0x02	; 2
- 8b8:	22 e0       	ldi	r18, 0x02	; 2
- 8ba:	0e 94 08 04 	call	0x810	; 0x810 <HDCM_vRotateMotor>
- 8be:	f3 cf       	rjmp	.-26     	; 0x8a6 <main>
+0000083c <main>:
+ 83c:	cf 93       	push	r28
+ 83e:	df 93       	push	r29
+ 840:	c8 ec       	ldi	r28, 0xC8	; 200
+ 842:	d0 e0       	ldi	r29, 0x00	; 0
+ 844:	80 e0       	ldi	r24, 0x00	; 0
+ 846:	60 e0       	ldi	r22, 0x00	; 0
+ 848:	42 e0       	ldi	r20, 0x02	; 2
+ 84a:	21 e0       	ldi	r18, 0x01	; 1
+ 84c:	0e 94 ef 03 	call	0x7de	; 0x7de <HDCM_vRotateMotor>
+ 850:	83 e0       	ldi	r24, 0x03	; 3
+ 852:	60 e0       	ldi	r22, 0x00	; 0
+ 854:	42 e0       	ldi	r20, 0x02	; 2
+ 856:	22 e0       	ldi	r18, 0x02	; 2
+ 858:	0e 94 ef 03 	call	0x7de	; 0x7de <HDCM_vRotateMotor>
+ 85c:	88 ee       	ldi	r24, 0xE8	; 232
+ 85e:	93 e0       	ldi	r25, 0x03	; 3
+ 860:	fe 01       	movw	r30, r28
+ 862:	31 97       	sbiw	r30, 0x01	; 1
+ 864:	f1 f7       	brne	.-4      	; 0x862 <__stack+0x3>
+ 866:	01 97       	sbiw	r24, 0x01	; 1
+ 868:	d9 f7       	brne	.-10     	; 0x860 <__stack+0x1>
+ 86a:	83 e0       	ldi	r24, 0x03	; 3
+ 86c:	60 e0       	ldi	r22, 0x00	; 0
+ 86e:	42 e0       	ldi	r20, 0x02	; 2
+ 870:	0e 94 e0 03 	call	0x7c0	; 0x7c0 <HDCM_vStopMotor>
+ 874:	80 e5       	ldi	r24, 0x50	; 80
+ 876:	93 ec       	ldi	r25, 0xC3	; 195
+ 878:	fe 01       	movw	r30, r28
+ 87a:	31 97       	sbiw	r30, 0x01	; 1
+ 87c:	f1 f7       	brne	.-4      	; 0x87a <__stack+0x1b>
+ 87e:	01 97       	sbiw	r24, 0x01	; 1
+ 880:	d9 f7       	brne	.-10     	; 0x878 <__stack+0x19>
+ 882:	e0 cf       	rjmp	.-64     	; 0x844 <main+0x8>
 
-000008c0 <__divmodhi4>:
- 8c0:	97 fb       	bst	r25, 7
- 8c2:	09 2e       	mov	r0, r25
- 8c4:	07 26       	eor	r0, r23
- 8c6:	0a d0       	rcall	.+20     	; 0x8dc <__divmodhi4_neg1>
- 8c8:	77 fd       	sbrc	r23, 7
- 8ca:	04 d0       	rcall	.+8      	; 0x8d4 <__divmodhi4_neg2>
- 8cc:	0c d0       	rcall	.+24     	; 0x8e6 <__udivmodhi4>
- 8ce:	06 d0       	rcall	.+12     	; 0x8dc <__divmodhi4_neg1>
- 8d0:	00 20       	and	r0, r0
- 8d2:	1a f4       	brpl	.+6      	; 0x8da <__divmodhi4_exit>
+00000884 <__divmodhi4>:
+ 884:	97 fb       	bst	r25, 7
+ 886:	09 2e       	mov	r0, r25
+ 888:	07 26       	eor	r0, r23
+ 88a:	0a d0       	rcall	.+20     	; 0x8a0 <__divmodhi4_neg1>
+ 88c:	77 fd       	sbrc	r23, 7
+ 88e:	04 d0       	rcall	.+8      	; 0x898 <__divmodhi4_neg2>
+ 890:	0c d0       	rcall	.+24     	; 0x8aa <__udivmodhi4>
+ 892:	06 d0       	rcall	.+12     	; 0x8a0 <__divmodhi4_neg1>
+ 894:	00 20       	and	r0, r0
+ 896:	1a f4       	brpl	.+6      	; 0x89e <__divmodhi4_exit>
 
-000008d4 <__divmodhi4_neg2>:
- 8d4:	70 95       	com	r23
- 8d6:	61 95       	neg	r22
- 8d8:	7f 4f       	sbci	r23, 0xFF	; 255
+00000898 <__divmodhi4_neg2>:
+ 898:	70 95       	com	r23
+ 89a:	61 95       	neg	r22
+ 89c:	7f 4f       	sbci	r23, 0xFF	; 255
 
-000008da <__divmodhi4_exit>:
- 8da:	08 95       	ret
+0000089e <__divmodhi4_exit>:
+ 89e:	08 95       	ret
 
-000008dc <__divmodhi4_neg1>:
- 8dc:	f6 f7       	brtc	.-4      	; 0x8da <__divmodhi4_exit>
- 8de:	90 95       	com	r25
- 8e0:	81 95       	neg	r24
- 8e2:	9f 4f       	sbci	r25, 0xFF	; 255
- 8e4:	08 95       	ret
+000008a0 <__divmodhi4_neg1>:
+ 8a0:	f6 f7       	brtc	.-4      	; 0x89e <__divmodhi4_exit>
+ 8a2:	90 95       	com	r25
+ 8a4:	81 95       	neg	r24
+ 8a6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 8a8:	08 95       	ret
 
-000008e6 <__udivmodhi4>:
- 8e6:	aa 1b       	sub	r26, r26
- 8e8:	bb 1b       	sub	r27, r27
- 8ea:	51 e1       	ldi	r21, 0x11	; 17
- 8ec:	07 c0       	rjmp	.+14     	; 0x8fc <__udivmodhi4_ep>
+000008aa <__udivmodhi4>:
+ 8aa:	aa 1b       	sub	r26, r26
+ 8ac:	bb 1b       	sub	r27, r27
+ 8ae:	51 e1       	ldi	r21, 0x11	; 17
+ 8b0:	07 c0       	rjmp	.+14     	; 0x8c0 <__udivmodhi4_ep>
 
-000008ee <__udivmodhi4_loop>:
- 8ee:	aa 1f       	adc	r26, r26
- 8f0:	bb 1f       	adc	r27, r27
- 8f2:	a6 17       	cp	r26, r22
- 8f4:	b7 07       	cpc	r27, r23
- 8f6:	10 f0       	brcs	.+4      	; 0x8fc <__udivmodhi4_ep>
- 8f8:	a6 1b       	sub	r26, r22
- 8fa:	b7 0b       	sbc	r27, r23
+000008b2 <__udivmodhi4_loop>:
+ 8b2:	aa 1f       	adc	r26, r26
+ 8b4:	bb 1f       	adc	r27, r27
+ 8b6:	a6 17       	cp	r26, r22
+ 8b8:	b7 07       	cpc	r27, r23
+ 8ba:	10 f0       	brcs	.+4      	; 0x8c0 <__udivmodhi4_ep>
+ 8bc:	a6 1b       	sub	r26, r22
+ 8be:	b7 0b       	sbc	r27, r23
 
-000008fc <__udivmodhi4_ep>:
- 8fc:	88 1f       	adc	r24, r24
- 8fe:	99 1f       	adc	r25, r25
- 900:	5a 95       	dec	r21
- 902:	a9 f7       	brne	.-22     	; 0x8ee <__udivmodhi4_loop>
- 904:	80 95       	com	r24
- 906:	90 95       	com	r25
- 908:	bc 01       	movw	r22, r24
- 90a:	cd 01       	movw	r24, r26
- 90c:	08 95       	ret
+000008c0 <__udivmodhi4_ep>:
+ 8c0:	88 1f       	adc	r24, r24
+ 8c2:	99 1f       	adc	r25, r25
+ 8c4:	5a 95       	dec	r21
+ 8c6:	a9 f7       	brne	.-22     	; 0x8b2 <__udivmodhi4_loop>
+ 8c8:	80 95       	com	r24
+ 8ca:	90 95       	com	r25
+ 8cc:	bc 01       	movw	r22, r24
+ 8ce:	cd 01       	movw	r24, r26
+ 8d0:	08 95       	ret
 
-0000090e <_exit>:
- 90e:	f8 94       	cli
+000008d2 <_exit>:
+ 8d2:	f8 94       	cli
 
-00000910 <__stop_program>:
- 910:	ff cf       	rjmp	.-2      	; 0x910 <__stop_program>
+000008d4 <__stop_program>:
+ 8d4:	ff cf       	rjmp	.-2      	; 0x8d4 <__stop_program>

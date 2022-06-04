@@ -123,7 +123,7 @@ LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x912
+.text           0x00000000      0x8d6
  *(.vectors)
  .vectors       0x00000000       0x54 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -286,25 +286,25 @@ LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
                 0x000007be        0x2 ./COTS/HAL/HDCM/HDCM_program.o
                 0x000007be                HDCM_vRotate_CCW
  .text.HDCM_vStopMotor
-                0x000007c0       0x50 ./COTS/HAL/HDCM/HDCM_program.o
+                0x000007c0       0x1e ./COTS/HAL/HDCM/HDCM_program.o
                 0x000007c0                HDCM_vStopMotor
  .text.HDCM_vRotateMotor
-                0x00000810       0x96 ./COTS/HAL/HDCM/HDCM_program.o
-                0x00000810                HDCM_vRotateMotor
- .text.main     0x000008a6       0x1a ./COTS/APP/main.o
-                0x000008a6                main
- .text.libgcc   0x000008c0       0x26 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
-                0x000008c0                __divmodhi4
-                0x000008c0                _div
- .text.libgcc   0x000008e6        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000008e6        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000008e6       0x28 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x000008e6                __udivmodhi4
-                0x0000090e                . = ALIGN (0x2)
+                0x000007de       0x5e ./COTS/HAL/HDCM/HDCM_program.o
+                0x000007de                HDCM_vRotateMotor
+ .text.main     0x0000083c       0x48 ./COTS/APP/main.o
+                0x0000083c                main
+ .text.libgcc   0x00000884       0x26 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x00000884                __divmodhi4
+                0x00000884                _div
+ .text.libgcc   0x000008aa        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x000008aa        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000008aa       0x28 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x000008aa                __udivmodhi4
+                0x000008d2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000090e        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x0000090e                exit
-                0x0000090e                _exit
+ .fini9         0x000008d2        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000008d2                exit
+                0x000008d2                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -323,11 +323,11 @@ LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000090e        0x4 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000008d2        0x4 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000912                _etext = .
+                0x000008d6                _etext = .
 
-.data           0x00800060       0x1a load address 0x00000912
+.data           0x00800060       0x1a load address 0x000008d6
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -370,8 +370,8 @@ LOAD d:/es/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/av
  *(.bss*)
  *(COMMON)
                 0x0080007a                PROVIDE (__bss_end, .)
-                0x00000912                __data_load_start = LOADADDR (.data)
-                0x0000092c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000008d6                __data_load_start = LOADADDR (.data)
+                0x000008f0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080007a        0x0
                 0x0080007a                PROVIDE (__noinit_start, .)

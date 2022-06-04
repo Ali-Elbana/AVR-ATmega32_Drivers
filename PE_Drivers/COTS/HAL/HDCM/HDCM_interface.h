@@ -11,13 +11,13 @@
 
 
 
-void HDCM_vRotateMotor	( u8 A_u8PortNum, u8 A_u8PinNum1, u8 A_u8PinNum2, u8 A_u8Rotate ) ;
+void HDCM_vRotateMotor	( u8 A_u8PortNum, u8 A_u8PinNum1, u8 A_u8PinNum2, u8 A_u8Rotate ) 	;
 
-void HDCM_vRotate_CW 	( void ) ;
+void HDCM_vRotate_CW 	( void ) 															;
 
-void HDCM_vRotate_CCW 	( void ) ;
+void HDCM_vRotate_CCW 	( void ) 															;
 
-void HDCM_vStopMotor	( u8 A_u8PortNum, u8 A_u8PinNum1, u8 A_u8PinNum2 ) ;
+void HDCM_vStopMotor	( u8 A_u8PortNum, u8 A_u8PinNum1, u8 A_u8PinNum2 ) 					;
 
 
 

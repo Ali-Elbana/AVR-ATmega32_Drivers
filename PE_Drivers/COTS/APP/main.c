@@ -48,6 +48,13 @@ int main(void)
 
 		HDCM_vRotateMotor ( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2, CCW  ) ;
 
+		_delay_ms( 100 );
+
+		HDCM_vStopMotor( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2 );
+
+		_delay_ms( 5000 );
+
+
 	}
 
 
@@ -93,7 +100,7 @@ int main(void)
 
 				MDIO_vSetPortValue( MDIO_PORTA, LR_u8Steps[ L_u8I ] );
 
-				_delay_ms( 3 ) ;
+				_delay_ms( 100 ) ;
 
 
 			}
