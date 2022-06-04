@@ -13,9 +13,9 @@
 
 
 
-void  HSSD_vDispNum( u8 A_u8PortNum, u8 A_u8Num ) ;
+void  HSSD_vDispNum	( u8 A_u8PortNum, u8 A_u8Num ) 	;
 
-void  HSSD_vTurnOFF( u8 A_u8PortNum ) ;
+void  HSSD_vTurnOFF	( u8 A_u8PortNum 			 ) 	;
 
 
 

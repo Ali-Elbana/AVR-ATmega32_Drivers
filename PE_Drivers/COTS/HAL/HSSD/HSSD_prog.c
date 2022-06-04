@@ -15,6 +15,8 @@
 #include "HSSD_config.h"
 #include "HSSD_private.h"
 
+
+
 static const u8 SCG_u8SSD_Nums[ ]=
 {
 
@@ -49,35 +51,15 @@ void  HSSD_vDispNum( u8 A_u8PortNum, u8 A_u8Num )
 
 		#if COM_CATHODE == HSSD_Type
 
-			switch( A_u8PortNum )
-			{
 
-				case MDIO_PORTA: MDIO_vSetPortValue( MDIO_PORTA, SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-				case MDIO_PORTB: MDIO_vSetPortValue( MDIO_PORTB, SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-				case MDIO_PORTC: MDIO_vSetPortValue( MDIO_PORTC, SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-				case MDIO_PORTD: MDIO_vSetPortValue( MDIO_PORTD, SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-			}
-
+			MDIO_vSetPortValue( A_u8PortNum, SCG_u8SSD_Nums[ A_u8Num ] ) ;
 
 
 		#elif HSSD_Type == COM_ANODE
 
-			switch( A_u8PortNum )
-			{
 
-				case MDIO_PORTA: MDIO_vSetPortValue( MDIO_PORTA, ~SCG_u8SSD_Nums[ A_u8Num ] ); break;
+			MDIO_vSetPortValue( A_u8PortNum, ~SCG_u8SSD_Nums[ A_u8Num ] ) ;
 
-				case MDIO_PORTB: MDIO_vSetPortValue( MDIO_PORTB, ~SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-				case MDIO_PORTC: MDIO_vSetPortValue( MDIO_PORTC, ~SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-				case MDIO_PORTD: MDIO_vSetPortValue( MDIO_PORTD, ~SCG_u8SSD_Nums[ A_u8Num ] ); break;
-
-			}
 
 		#endif
 
@@ -102,36 +84,14 @@ void  HSSD_vTurnOFF( u8 A_u8PortNum )
 
 	#if COM_CATHODE == HSSD_Type
 
-		switch( A_u8PortNum )
-		{
 
-			case MDIO_PORTA: MDIO_vSetPortValue( MDIO_PORTA, MDIO_PORT_LOW ); break;
-
-			case MDIO_PORTB: MDIO_vSetPortValue( MDIO_PORTB, MDIO_PORT_LOW ); break;
-
-			case MDIO_PORTC: MDIO_vSetPortValue( MDIO_PORTC, MDIO_PORT_LOW ); break;
-
-			case MDIO_PORTD: MDIO_vSetPortValue( MDIO_PORTD, MDIO_PORT_LOW ); break;
-
-		}
+		MDIO_vSetPortValue( MDIO_PORTA, MDIO_PORT_LOW ) ;
 
 
 	#elif HSSD_Type == COM_ANODE
 
 
-		switch( A_u8PortNum )
-		{
-
-			case MDIO_PORTA: MDIO_vSetPortValue( MDIO_PORTA, MDIO_PORT_HIGH ); break;
-
-			case MDIO_PORTB: MDIO_vSetPortValue( MDIO_PORTB, MDIO_PORT_HIGH ); break;
-
-			case MDIO_PORTC: MDIO_vSetPortValue( MDIO_PORTC, MDIO_PORT_HIGH ); break;
-
-			case MDIO_PORTD: MDIO_vSetPortValue( MDIO_PORTD, MDIO_PORT_HIGH ); break;
-
-		}
-
+		MDIO_vSetPortValue( MDIO_PORTA, MDIO_PORT_HIGH ) ;
 
 
 	#endif
@@ -143,6 +103,8 @@ void  HSSD_vTurnOFF( u8 A_u8PortNum )
 
 
 
+/**************************************************************************************************************/
+/*************************************************************************************************************/
 
 
 
