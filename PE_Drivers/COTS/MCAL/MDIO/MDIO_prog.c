@@ -227,5 +227,43 @@ u8  MDIO_u8GetPortValue( u8 A_u8PortNum )
 }
 
 
+/**************************************************************************************************************/
+/*************************************************************************************************************/
+
+
+void MDIO_vTogglePinValue( u8 A_u8PortNum, u8 A_u8PinNum )
+{
+
+
+	switch( A_u8PortNum )
+	{
+
+		case MDIO_PORTA: TOGGLE_BIT( PORTA, A_u8PinNum ); break;
+
+		case MDIO_PORTB: TOGGLE_BIT( PORTB, A_u8PinNum ); break;
+
+		case MDIO_PORTC: TOGGLE_BIT( PORTC, A_u8PinNum ); break;
+
+		case MDIO_PORTD: TOGGLE_BIT( PORTD, A_u8PinNum ); break;
+
+	}
+
+
+
+
+
+}
+
+
+
+
+/**************************************************************************************************************/
+/*************************************************************************************************************/
+
+
+
+
+
+
 
 

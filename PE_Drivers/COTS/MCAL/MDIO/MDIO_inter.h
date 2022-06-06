@@ -15,16 +15,17 @@
 
 void MDIO_vSetPinDirection	( u8 A_u8PortNum, u8 A_u8PinNum, u8 A_u8Dir ) 	;
 
-void MDIO_vSetPortDirection ( u8 A_u8PortNum, u8 A_u8Dir )					;
+void MDIO_vSetPortDirection ( u8 A_u8PortNum, u8 A_u8Dir 				)	;
 
 void MDIO_vSetPinValue      ( u8 A_u8PortNum, u8 A_u8PinNum, u8 A_u8Val )	;
 
-void MDIO_vSetPortValue    	( u8 A_u8PortNum, u8 A_u8Val )					;
+void MDIO_vSetPortValue    	( u8 A_u8PortNum, u8 A_u8Val 				)	;
 
-u8   MDIO_u8GetPinValue    	( u8 A_u8PortNum, u8 A_u8PinNum )				;
+u8   MDIO_u8GetPinValue    	( u8 A_u8PortNum, u8 A_u8PinNum 			)	;
 
-u8   MDIO_u8GetPortValue   	( u8 A_u8PortNum )								;
+u8   MDIO_u8GetPortValue   	( u8 A_u8PortNum 							)	;
 
+void MDIO_vTogglePinValue	( u8 A_u8PortNum, u8 A_u8PinNum 			) 	;
 
 
 #define MDIO_PORTA 	0

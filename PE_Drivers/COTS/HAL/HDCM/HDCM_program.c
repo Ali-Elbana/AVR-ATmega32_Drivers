@@ -40,7 +40,6 @@ void HDCM_vRotateMotor ( u8 A_u8PortNum, u8 A_u8PinNum1, u8 A_u8PinNum2, u8 A_u8
 
 		case CW:  MDIO_vSetPinValue( A_u8PortNum, A_u8PinNum1, MDIO_PIN_HIGH ); MDIO_vSetPinValue( A_u8PortNum, A_u8PinNum2, MDIO_PIN_LOW  ); break;
 
-
 		case CCW: MDIO_vSetPinValue( A_u8PortNum, A_u8PinNum1, MDIO_PIN_LOW  ); MDIO_vSetPinValue( A_u8PortNum, A_u8PinNum2, MDIO_PIN_HIGH ); break;
 
 	}

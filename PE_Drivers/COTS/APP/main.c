@@ -13,6 +13,8 @@
 #include "../HAL/HKEYPAD/HKEYPAD_inter.h"
 #include "../HAL/HLCD/HLCD_inter.h"
 #include "../HAL/HDCM/HDCM_interface.h"
+#include "../MCAL/MGIE/MGIE_interface.h"
+#include "../MCAL/MEXTI/MEXTI_interface.h"
 
 #include "util/delay.h"
 
@@ -25,8 +27,78 @@
 
 #define Stepper_Motor 	STOP
 
-#define DC_MOTOR 		RUN
+#define DC_MOTOR 		STOP
 
+#define Interrupt 		RUN
+
+
+
+
+
+#if Interrupt == RUN
+
+
+
+//void TOGGLE ( void ) ;
+
+
+
+
+int main(void)
+{
+
+
+
+	MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN2, MDIO_INPUT ) ;
+
+	MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN2, MDIO_PIN_HIGH ) ;
+
+	MDIO_vSetPinDirection( MDIO_PORTA, MDIO_PIN0, MDIO_OUTPUT ) ;
+
+//	MEXTI_vSetCallBack( INT0, &TOGGLE ) ;
+
+	MEXTI_vEnableInterrupt( INT0 ) ;
+
+	MEXTI_vSetSenseControl( INT0, EXTI_FallingEdge ) ;
+
+	MGIE_vEnableGlobalInterrupt( ) ;
+
+
+
+	while( TRUE )
+	{
+
+
+
+
+	}
+
+
+
+}
+
+
+ISR_INT0
+{
+
+
+	MDIO_vTogglePinValue( MDIO_PORTA, MDIO_PIN0 ) ;
+
+
+}
+
+
+//void TOGGLE ( void )
+//{
+//
+//
+//	MDIO_vTogglePinValue( MDIO_PORTA, MDIO_PIN0 ) ;
+//
+//
+//}
+
+
+#endif
 
 
 
@@ -48,7 +120,7 @@ int main(void)
 
 		HDCM_vRotateMotor ( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2, CCW  ) ;
 
-		_delay_ms( 100 );
+		_delay_ms( 2000 );
 
 		HDCM_vStopMotor( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2 );
 

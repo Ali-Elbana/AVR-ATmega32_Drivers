@@ -9,7 +9,10 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../HAL/HKEYPAD/../../LIB/LSTD_TYPES.h \
   ../COTS/APP/../HAL/HLCD/HLCD_inter.h \
   ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h \
-  ../COTS/APP/../HAL/HDCM/HDCM_interface.h
+  ../COTS/APP/../HAL/HDCM/HDCM_interface.h \
+  ../COTS/APP/../MCAL/MGIE/MGIE_interface.h \
+  ../COTS/APP/../MCAL/MEXTI/MEXTI_interface.h \
+  ../COTS/APP/../MCAL/MEXTI/MEXTI_private.h
 
 ../COTS/APP/../LIB/LBITMATH.h:
 
@@ -34,3 +37,9 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h:
 
 ../COTS/APP/../HAL/HDCM/HDCM_interface.h:
+
+../COTS/APP/../MCAL/MGIE/MGIE_interface.h:
+
+../COTS/APP/../MCAL/MEXTI/MEXTI_interface.h:
+
+../COTS/APP/../MCAL/MEXTI/MEXTI_private.h:

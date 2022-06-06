@@ -8,6 +8,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include COTS/MCAL/MGIE/subdir.mk
+-include COTS/MCAL/MEXTI/subdir.mk
 -include COTS/MCAL/MDIO/subdir.mk
 -include COTS/HAL/HSSD/subdir.mk
 -include COTS/HAL/HLCD/subdir.mk
