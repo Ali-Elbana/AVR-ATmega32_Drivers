@@ -15,6 +15,7 @@
 #include "../HAL/HDCM/HDCM_interface.h"
 #include "../MCAL/MGIE/MGIE_interface.h"
 #include "../MCAL/MEXTI/MEXTI_interface.h"
+#include "../MCAL/MADC/MADC_interface.h"
 
 #include "util/delay.h"
 
@@ -29,7 +30,56 @@
 
 #define DC_MOTOR 		STOP
 
-#define Interrupt 		RUN
+#define Interrupt 		STOP
+
+#define ADC 			RUN
+
+
+
+
+
+
+
+#if ADC == RUN
+
+
+
+int main(void)
+{
+
+	MADC_vInit();
+	HLCD_vInit();
+
+	u16 L_u16ADCValue = Initialized_by_Zero ;
+
+
+	while( TRUE )
+	{
+
+		L_u16ADCValue = MADC_u16ConvertAnalog_to_Digital( CHANNEL_00 ) ;
+
+		HLCD_vClear();
+
+		HLCD_vDispNumber( L_u16ADCValue ) ;
+
+		_delay_ms( 500 ) ;
+
+	}
+
+
+
+}
+
+
+
+
+#endif
+
+
+
+
+
+
 
 
 
@@ -111,6 +161,15 @@ int main(void)
 {
 
 
+	MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN2, MDIO_INPUT ) ;
+
+	MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN2, MDIO_PIN_HIGH ) ;
+
+	MEXTI_vEnableInterrupt( INT0 ) ;
+
+	MEXTI_vSetSenseControl( INT0, EXTI_FallingEdge ) ;
+
+	MGIE_vEnableGlobalInterrupt( ) ;
 
 
 	while( TRUE )
@@ -118,13 +177,7 @@ int main(void)
 
 		HDCM_vRotateMotor ( MDIO_PORTA, MDIO_PIN0, MDIO_PIN2, CW ) 	 ;
 
-		HDCM_vRotateMotor ( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2, CCW  ) ;
-
-		_delay_ms( 2000 );
-
-		HDCM_vStopMotor( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2 );
-
-		_delay_ms( 5000 );
+		HDCM_vRotateMotor ( MDIO_PORTD, MDIO_PIN0, MDIO_PIN1, CCW  ) ;
 
 
 	}
@@ -132,6 +185,21 @@ int main(void)
 
 
 }
+
+
+
+
+ISR_INT0
+{
+
+
+	HDCM_vStopMotor( MDIO_PORTD, MDIO_PIN0, MDIO_PIN2 );
+
+
+	_delay_ms( 3000 ) ;
+
+}
+
 
 
 

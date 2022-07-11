@@ -8,7 +8,8 @@
 
 
 #define SREG   *((volatile u8*)(0x5f))
-#define I 7
+
+#define SREG_I 7
 
 
 

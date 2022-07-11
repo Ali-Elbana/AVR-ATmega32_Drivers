@@ -16,14 +16,23 @@
 
 
 
-void MGIE_vEnableGlobalInterrupt(void)
+void MGIE_vEnableGlobalInterrupt( void )
 {
-	SET_BIT(SREG, I);
+
+	SET_BIT( SREG, SREG_I ) ;
+
 }
 
-void MGIE_vDisableGlobalInterrupt(void)
+
+/********************************************************************************************************************/
+/*******************************************************************************************************************/
+
+
+void MGIE_vDisableGlobalInterrupt( void )
 {
-	CLR_BIT(SREG, I);
+
+	CLR_BIT( SREG, SREG_I ) ;
+
 }
 
 

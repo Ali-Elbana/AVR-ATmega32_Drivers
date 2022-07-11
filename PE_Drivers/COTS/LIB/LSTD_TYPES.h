@@ -52,18 +52,18 @@ typedef double              f64	;
 
 
 
-#define TRUE				1
+#define TRUE  1
 
 // Is a macro for defining the initialized value of the variables.
-#define Initialized_by_Zero	0
+#define Initialized_by_Zero  0
 
 
-#define RUN 	1
+#define RUN  1
 
-#define STOP 	0
+#define STOP 0
 
 
-
+#define Flag_is_Set 1
 
 
 
