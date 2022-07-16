@@ -6,12 +6,24 @@
 #ifndef _MADC_interface_H
 #define _MADC_interface_H
 
+#include "MADC_private.h"
+
+
+
+/* Polling based APIs */
 
 void MADC_vInit( void ) ;
 
-u16 MADC_u16ConvertAnalog_to_Digital ( u8 A_u8ChannelNum ) ;
+u16 MADC_u16ConvertAnalog_to_Digital( u8 A_u8ChannelNum ) ;
 
 
+/* Interrupt based APIs */
+
+void MADC_vStartConversion( u8 A_u8ChannelNum ) ;
+
+u16 MADC_GetADCData( void );
+
+void MADC_vSetCallBack( void (*MEXTI_vpPointerTo_ISR_function) (void) ) ;
 
 
 #define CHANNEL_00 0
@@ -23,12 +35,16 @@ u16 MADC_u16ConvertAnalog_to_Digital ( u8 A_u8ChannelNum ) ;
 #define CHANNEL_06 6
 #define CHANNEL_07 7
 
+#define CHANNEL_P0_N0_G10 8
+#define CHANNEL_P1_N0_G10 9
 
 
+#define Hash_Define_Methode 	RUN
+#if 	Hash_Define_Methode == 	RUN
 
+	#define ADC_ISR ADC_VectorNum
 
-
-
+#endif
 
 
 

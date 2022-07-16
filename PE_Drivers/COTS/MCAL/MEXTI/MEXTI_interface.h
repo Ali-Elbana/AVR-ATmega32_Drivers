@@ -42,7 +42,6 @@ void MEXTI_vSetCallBack			( u8 A_u8EXTI_INTx, void (*MEXTI_vpPointerTo_ISR_funct
 
 
 #define Hash_Define_Methode 	RUN
-
 #if 	Hash_Define_Methode == 	RUN
 
 

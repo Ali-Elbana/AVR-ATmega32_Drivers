@@ -322,7 +322,6 @@ void MEXTI_vSetCallBack( u8 A_u8EXTI_INTx, void (*MEXTI_vpPointerTo_ISR_function
 /*******************************************************************************************************************/
 
 #define Func_to_Ptr_Method 		STOP
-
 #if 	Func_to_Ptr_Method == 	RUN
 
 

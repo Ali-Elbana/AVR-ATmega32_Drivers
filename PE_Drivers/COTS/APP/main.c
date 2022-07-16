@@ -16,31 +16,31 @@
 #include "../MCAL/MGIE/MGIE_interface.h"
 #include "../MCAL/MEXTI/MEXTI_interface.h"
 #include "../MCAL/MADC/MADC_interface.h"
+#include "../HAL/HLM35/HLM35_interface.h"
+#include "../HAL/HLDR/HLDR_interface.h"
 
 #include "util/delay.h"
 
-
 #define KEYPAD 			STOP
-
 #define LCD				STOP
-
 #define MOVING_NAME 	STOP
-
 #define Stepper_Motor 	STOP
-
 #define DC_MOTOR 		STOP
-
 #define Interrupt 		STOP
-
-#define ADC 			RUN
-
-
-
+#define ADC_INTERRUPT 	STOP
+#define LM35_POLLING 	STOP
+#define LDR_POLLING 	RUN
 
 
 
 
-#if ADC == RUN
+
+
+
+
+
+
+#if LDR_POLLING == RUN
 
 
 
@@ -48,29 +48,40 @@ int main(void)
 {
 
 	MADC_vInit();
+
 	HLCD_vInit();
 
 	u16 L_u16ADCValue = Initialized_by_Zero ;
 
+	MDIO_vSetPinDirection( MDIO_PORTA, MDIO_PIN7, MDIO_OUTPUT ) ;
 
 	while( TRUE )
 	{
 
 		L_u16ADCValue = MADC_u16ConvertAnalog_to_Digital( CHANNEL_00 ) ;
 
+		if( L_u16ADCValue < Vavg )
+		{
+
+			MDIO_vSetPinValue( MDIO_PORTA, MDIO_PIN7, MDIO_PIN_HIGH ) ;
+
+		}
+
+		else{  MDIO_vSetPinValue( MDIO_PORTA, MDIO_PIN7, MDIO_PIN_LOW ) ;  }
+
+
+		_delay_ms( 300 ) ;
+
 		HLCD_vClear();
 
 		HLCD_vDispNumber( L_u16ADCValue ) ;
 
-		_delay_ms( 500 ) ;
+		_delay_ms( 300 ) ;
 
 	}
 
 
-
 }
-
-
 
 
 #endif
@@ -78,6 +89,105 @@ int main(void)
 
 
 
+
+#if LM35_POLLING == RUN
+
+
+
+
+int main(void)
+{
+
+	MADC_vInit();
+
+	HLCD_vInit();
+
+	while( TRUE )
+	{
+
+		u16 L_u16Temperature = HLM35_u16GetTemperature( CHANNEL_00, Vref, BitNums );
+
+		_delay_ms( 300 ) ;
+
+		HLCD_vClear();
+
+		HLCD_vDispNumber( L_u16Temperature ) ;
+
+		_delay_ms( 300 ) ;
+
+	}
+
+
+}
+
+
+#endif
+
+
+
+
+
+#if ADC_INTERRUPT == RUN
+
+
+volatile u16 G_u16ADC_Data = 0 ;
+
+
+void ADC_APP (void) ;
+
+
+int main(void)
+{
+
+	MADC_vSetCallBack( ADC_APP ) ;
+	MADC_vInit();
+	HLCD_vInit();
+
+	//u16 L_u16ADCValue = Initialized_by_Zero ;
+
+	MADC_vStartConversion( CHANNEL_01 ) ;
+
+	MGIE_vEnableGlobalInterrupt( ) ;
+
+	while( TRUE )
+	{
+
+		//L_u16ADCValue = MADC_u16ConvertAnalog_to_Digital( CHANNEL_00 ) ;
+
+		HLCD_vClear();
+
+		HLCD_vDispNumber( G_u16ADC_Data ) ;
+
+		_delay_ms( 300 ) ;
+
+	}
+
+
+}
+
+
+//ADC_ISR
+//{
+//
+//	 G_u16ADC_Data = MADC_GetADCData();
+//
+//}
+
+
+
+void ADC_APP (void)
+{
+
+	 G_u16ADC_Data = MADC_GetADCData();
+
+	 MADC_vStartConversion( CHANNEL_01 ) ;
+
+}
+
+
+
+
+#endif
 
 
 

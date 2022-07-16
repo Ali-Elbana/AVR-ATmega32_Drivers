@@ -14,6 +14,12 @@
 #include "MADC_config.h"
 
 
+
+// Global ISR pointer to function.
+void ( *MADC_vpPointerToFunction ) (void) = NULL ;
+
+
+
 /********************************************************************************************************************/
 /*******************************************************************************************************************/
 
@@ -22,36 +28,102 @@ void MADC_vInit( void )
 
 	// 1-Vref selection.
 
-	CLR_BIT( ADMUX, ADMUX_REFS1 ) ;
+	#if ADC_REF_VOLT == AVCC
 
-	SET_BIT( ADMUX, ADMUX_REFS0 ) ;
+		CLR_BIT( ADMUX, ADMUX_REFS1 ) ;
+		SET_BIT( ADMUX, ADMUX_REFS0 ) ;
+
+	#elif ADC_REF_VOLT == AREF
+
+		CLR_BIT( ADMUX, ADMUX_REFS1 ) ;
+		CLR_BIT( ADMUX, ADMUX_REFS0 ) ;
+
+	#elif ADC_REF_VOLT == Internal_Volt
+
+		SET_BIT( ADMUX, ADMUX_REFS1 ) ;
+		SET_BIT( ADMUX, ADMUX_REFS0 ) ;
+
+	#else
+
+		#error "Please, select correct refrence voltage"
+
+	#endif
 
 
 	// 2-Data adjustment direction(Right OR Left).
 
-	CLR_BIT( ADMUX, ADMUX_ADLAR ) ;
+	#if ADC_Data_Adjustment == RIGHT_Adjust
+
+		CLR_BIT( ADMUX, ADMUX_ADLAR ) ;
+
+	#elif ADC_Data_Adjustment == LEFT_Adjust
+
+		SET_BIT( ADMUX, ADMUX_ADLAR ) ;
+
+	#else
+
+		#error "Please, select correct data adjustment direction(Right OR Left)"
+
+	#endif
 
 
 	// 3-Select prescaler bits.
 
-	ADCSRA = ( ADCSRA & 0xF8 ) | ( ADC_Prescaler ) ;
+	ADCSRA = ( ADCSRA & Prescaler_Bit_Manipulation ) | ( ADC_Prescaler ) ;
 
 
-	// 4-Enable auto trigger.
+	// 4-Enable/Disable auto trigger.
 
-	CLR_BIT( ADCSRA , ADCSRA_ADATE ) ;
+	#if AUTO_TRIGGER == ENABLE
+
+		SET_BIT( ADCSRA , ADCSRA_ADATE ) ;
+
+	#elif AUTO_TRIGGER == DISABLE
+
+		CLR_BIT( ADCSRA , ADCSRA_ADATE ) ;
+
+	#else
+
+		#error "Please, select correct ENABLE/DISABLE auto trigger choice"
+
+	#endif
 
 	// 5-Select auto trigger source.
 
+		SFIOR = ( SFIOR & AutoTrigger_Bit_Manipulation ) | ( TriggerSource_Option << 5 ) ;
 
 	// 6- Enable/Disable Interrupt.
 
-	CLR_BIT( ADCSRA , ADCSRA_ADEN ) ;
+	#if INTERRUPT == ENABLE
 
+		SET_BIT( ADCSRA , ADCSRA_ADIE ) ;
 
-	// 7-Enable ADC peripheral.
+	#elif INTERRUPT == DISABLE
 
-	SET_BIT( ADCSRA , ADCSRA_ADEN ) ;
+		CLR_BIT( ADCSRA , ADCSRA_ADIE ) ;
+
+	#else
+
+		#error "Please, select correct ENABLE/DISABLE Interrupt choice"
+
+	#endif
+
+	// 7-Enable/Disable ADC peripheral.
+
+	#if ADC_Peripheral == ENABLE
+
+		SET_BIT( ADCSRA , ADCSRA_ADEN ) ;
+
+	#elif ADC_Peripheral == DISABLE
+
+		CLR_BIT( ADCSRA , ADCSRA_ADEN ) ;
+
+	#else
+
+		#error "Please, select correct ENABLE/DISABLE ADC peripheral choice"
+
+	#endif
+
 
 
 }
@@ -66,7 +138,7 @@ u16 MADC_u16ConvertAnalog_to_Digital ( u8 A_u8ChannelNum )
 
 	// 1-Select channel.
 
-	ADMUX = ( ADMUX & 0xE0 ) | ( A_u8ChannelNum & 0x1F ) ;
+	ADMUX = ( ADMUX & ChannelSelectionBits_Manipulation ) | ( A_u8ChannelNum & ChannelNumBits_Manipulation ) ;
 
 
 	// 2-Start conversion.
@@ -86,7 +158,7 @@ u16 MADC_u16ConvertAnalog_to_Digital ( u8 A_u8ChannelNum )
 
 	// 5-Return ADC data.
 
-	return ADC ;
+	return ADC_Data ;
 
 
 
@@ -96,16 +168,79 @@ u16 MADC_u16ConvertAnalog_to_Digital ( u8 A_u8ChannelNum )
 /********************************************************************************************************************/
 /*******************************************************************************************************************/
 
+void MADC_vStartConversion ( u8 A_u8ChannelNum )
+{
+
+
+	// 1-Select channel.
+
+	ADMUX = ( ADMUX & ChannelSelectionBits_Manipulation ) | ( A_u8ChannelNum & ChannelNumBits_Manipulation ) ;
+
+
+	// 2-Start conversion.
+
+	SET_BIT( ADCSRA, ADCSRA_ADSC ) ;
+
+
+}
+
+/********************************************************************************************************************/
+/*******************************************************************************************************************/
+
+u16 MADC_GetADCData( void )
+{
+
+	// 5-Return ADC data.
+
+	return ADC_Data ;
+
+}
+
+/********************************************************************************************************************/
+/*******************************************************************************************************************/
+
+
+//pointer to function
+void MADC_vSetCallBack( void (*MEXTI_vpPointerTo_ISR_function) (void) )
+{
+
+	MADC_vpPointerToFunction = MEXTI_vpPointerTo_ISR_function ;
+
+}
+
+
+/********************************************************************************************************************/
+/*******************************************************************************************************************/
+
+#define Func_to_Ptr_Method 		STOP
+#if 	Func_to_Ptr_Method == 	RUN
+
+ADC_ISR
+{
+
+
+	if( MEXTI_vpPointerTo_ADC_function != NULL )
+	{
+
+		MADC_vpPointerToFunction( ) ;
+
+	}
+
+
+	else
+	{
+
+
+	}
 
 
 
+}
 
+#endif
 
-
-
-
-
-
+/********************************************************************************************************************/
+/*******************************************************************************************************************/
 
 
 

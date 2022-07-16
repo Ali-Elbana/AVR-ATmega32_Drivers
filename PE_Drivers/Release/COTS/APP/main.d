@@ -13,7 +13,10 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../MCAL/MGIE/MGIE_interface.h \
   ../COTS/APP/../MCAL/MEXTI/MEXTI_interface.h \
   ../COTS/APP/../MCAL/MEXTI/MEXTI_private.h \
-  ../COTS/APP/../MCAL/MADC/MADC_interface.h
+  ../COTS/APP/../MCAL/MADC/MADC_interface.h \
+  ../COTS/APP/../MCAL/MADC/MADC_private.h \
+  ../COTS/APP/../HAL/HLM35/HLM35_interface.h \
+  ../COTS/APP/../HAL/HLDR/HLDR_interface.h
 
 ../COTS/APP/../LIB/LBITMATH.h:
 
@@ -46,3 +49,9 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 ../COTS/APP/../MCAL/MEXTI/MEXTI_private.h:
 
 ../COTS/APP/../MCAL/MADC/MADC_interface.h:
+
+../COTS/APP/../MCAL/MADC/MADC_private.h:
+
+../COTS/APP/../HAL/HLM35/HLM35_interface.h:
+
+../COTS/APP/../HAL/HLDR/HLDR_interface.h:

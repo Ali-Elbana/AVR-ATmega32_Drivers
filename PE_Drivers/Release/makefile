@@ -13,6 +13,8 @@ RM := rm -rf
 -include COTS/MCAL/MDIO/subdir.mk
 -include COTS/MCAL/MADC/subdir.mk
 -include COTS/HAL/HSSD/subdir.mk
+-include COTS/HAL/HLM35/subdir.mk
+-include COTS/HAL/HLDR/subdir.mk
 -include COTS/HAL/HLCD/subdir.mk
 -include COTS/HAL/HKEYPAD/subdir.mk
 -include COTS/HAL/HDCM/subdir.mk

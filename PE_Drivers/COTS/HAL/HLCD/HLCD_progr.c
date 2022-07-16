@@ -13,7 +13,7 @@
 #include "../../HAL/HLCD/HLCD_config.h"
 #include "../../HAL/HLCD/HLCD_private.h"
 
-#include<util/delay.h>
+#include <util/delay.h>
 
 
 
@@ -216,10 +216,10 @@ void HLCD_vDispNumber(s32 A_s32Num)
 
 
 	// For arrangement the digits.
-	for ( s8 j = (L_u8Counter-1) ; j >= 0 ; j-- )
+	for ( s8 L_s8ArrangedNums = (L_u8Counter-1) ; L_s8ArrangedNums >= 0 ; L_s8ArrangedNums-- )
 	{
 
-		HLCD_vSendData( '0' + LR_u8Digits[L_u8Counter] ) ;
+		HLCD_vSendData( '0' + LR_u8Digits[ L_s8ArrangedNums ] ) ;
 
 	}
 
