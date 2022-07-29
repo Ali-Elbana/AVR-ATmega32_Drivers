@@ -27,6 +27,8 @@ u8   MDIO_u8GetPortValue   	( u8 A_u8PortNum 							)	;
 
 void MDIO_vTogglePinValue	( u8 A_u8PortNum, u8 A_u8PinNum 			) 	;
 
+s32 MDIO_s32MappingValue 	( s32 A_s32InputValue ,s32 A_s32InputMin, s32 A_s32InputMax, s32 A_s32OutputMin,
+							  s32 A_s32OutputMax ) ;
 
 #define MDIO_PORTA 	0
 #define MDIO_PORTB 	1
@@ -59,6 +61,13 @@ void MDIO_vTogglePinValue	( u8 A_u8PortNum, u8 A_u8PinNum 			) 	;
 
 #define MDIO_SET_NibbleHigh 0xf0
 #define MDIO_CLR_NibbleHigh 0x0f
+
+
+#define Input_Min	0
+#define Input_Max 	1023
+#define Output_Min 	0
+#define Output_Max 	255
+
 
 
 #endif /* DIO_INTERFACE_H_ */

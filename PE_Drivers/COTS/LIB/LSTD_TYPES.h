@@ -63,8 +63,9 @@ typedef double              f64	;
 #define STOP 0
 
 
-#define Flag_is_Set 1
+#define Flag_is_Set 	1
 
+#define Flag_is_Cleared 0
 
 
 

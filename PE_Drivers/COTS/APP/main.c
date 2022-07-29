@@ -9,13 +9,14 @@
 #include "../LIB/LSTD_TYPES.h"
 
 #include "../MCAL/MDIO/MDIO_inter.h"
+#include "../MCAL/MGIE/MGIE_interface.h"
+#include "../MCAL/MEXTI/MEXTI_interface.h"
+#include "../MCAL/MADC/MADC_interface.h"
+#include "../MCAL/MTimers/MTimers_interface.h"
 #include "../HAL/HSSD/HSSD_inter.h"
 #include "../HAL/HKEYPAD/HKEYPAD_inter.h"
 #include "../HAL/HLCD/HLCD_inter.h"
 #include "../HAL/HDCM/HDCM_interface.h"
-#include "../MCAL/MGIE/MGIE_interface.h"
-#include "../MCAL/MEXTI/MEXTI_interface.h"
-#include "../MCAL/MADC/MADC_interface.h"
 #include "../HAL/HLM35/HLM35_interface.h"
 #include "../HAL/HLDR/HLDR_interface.h"
 
@@ -29,11 +30,324 @@
 #define Interrupt 		STOP
 #define ADC_INTERRUPT 	STOP
 #define LM35_POLLING 	STOP
-#define LDR_POLLING 	RUN
+#define LDR_POLLING 	STOP
+#define ADC_MAPPING		STOP
+#define TIMER0_APP		STOP
+#define TIMER1_APP		STOP
+#define ICU_APP			RUN
+
+
+
+#if ICU_APP == RUN
+
+
+void ReadPWM ( void ) ;
+
+volatile u8 G_u8ReadingFlag 	= Initialized_by_Zero ;
+
+volatile u16 G_u16PeriodicTime 	= Initialized_by_Zero ;
+
+volatile u16 G_u16OnTime     	= Initialized_by_Zero ;
 
 
 
 
+int main(void)
+{
+
+	MDIO_vSetPinDirection( MDIO_PORTB, MDIO_PIN3, MDIO_OUTPUT ) ; // OC0
+
+	MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN6, MDIO_OUTPUT ) ; // ICP1
+
+	//MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN5, MDIO_OUTPUT ) ; // OC1A
+
+	MTIMERS_vSetCallBack( TIMER1, TIMER1_ICU_INT, ReadPWM ) ;
+
+	MTIMER0_vInit( ) ;
+
+	MTIMER1_vInit( ) ;
+
+	HLCD_vInit	 ( ) ;
+
+	MTIMERS_vSetCompareValue( TIMER0, 127) ;
+
+	MTIMERS_vStartTimer( TIMER0 ) ;
+
+	MTIMERS_vStartTimer( TIMER1 ) ;
+
+	MGIE_vEnableGlobalInterrupt( ) ;
+
+
+	while( TRUE )
+	{
+
+
+		if( G_u8ReadingFlag == Flag_is_Set )
+		{
+
+			G_u8ReadingFlag = Flag_is_Cleared ;
+
+			HLCD_vClear( ) ;
+
+			_delay_ms(100);
+
+			HLCD_vDispNumber( G_u16OnTime ) ;
+
+			HLCD_vGoTo( HLCD_LINE2, HLCD_Square1 ) ;
+
+			HLCD_vDispNumber( G_u16PeriodicTime ) ;
+
+			MTIMERS_vEnableInterrupt( TIMER1, TIMER1_ICU_INT ) ;
+
+		}
+
+
+
+
+
+
+	}
+
+
+}
+
+
+
+
+void ReadPWM ( void )
+{
+
+	static u8 LS_u8Counter 				= Initialized_by_Zero ;
+
+	static u16 LS_u16TimerReadings[3] 	= { Initialized_by_Zero } ;
+
+	LS_u8Counter++ ;
+
+	switch( LS_u8Counter )
+	{
+
+		case 1 :
+
+			LS_u16TimerReadings[ 0 ] = MTIMERS_u16GetCapturedValue(  ) ;
+
+			MTIMERS_vSetICU_Trigger( ICU_Rising ) ;
+
+		break;
+
+
+
+		case 2 :
+
+			LS_u16TimerReadings[ 1 ] = MTIMERS_u16GetCapturedValue(  ) ;
+
+			MTIMERS_vSetICU_Trigger( ICU_Falling ) ;
+
+			G_u16PeriodicTime = LS_u16TimerReadings[ 1 ] - LS_u16TimerReadings[ 0 ] ;
+
+		break;
+
+
+
+		case 3 :
+
+			LS_u16TimerReadings[ 2 ] = MTIMERS_u16GetCapturedValue(  ) ;
+
+			MTIMERS_vDisableInterrupt( TIMER1, TIMER1_ICU_INT ) ;
+
+			G_u16OnTime = LS_u16TimerReadings[ 2 ] - LS_u16TimerReadings[ 1 ] ;
+
+			LS_u8Counter = Initialized_by_Zero ;
+
+			G_u8ReadingFlag = Flag_is_Set ;
+
+		break;
+
+
+
+
+
+	}
+
+
+
+
+
+}
+
+
+
+
+#endif
+
+
+
+
+
+
+#if TIMER1_APP == RUN
+
+
+//void TogglePinValue (void) ;
+
+int main(void)
+{
+
+
+	MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN5, MDIO_OUTPUT ) ;
+
+	MTIMER1_vInit( ) ;
+
+	MTIMERS_vStartTimer( TIMER1 ) ;
+
+	MTIMER1_vSetTopValue( TIMER1_TopValue ) ;
+
+	//s32 L_s32ServoAngle = Initialized_by_Zero ;
+
+	MTIMERS_vSetCompareValue( TIMER1, 2000 ) ;
+
+	while( TRUE )
+	{
+
+
+		for( u16 L_u16Iteration = 1000; L_u16Iteration <= 2000; L_u16Iteration++ )
+		{
+
+			MTIMERS_vSetCompareValue( TIMER1, L_u16Iteration ) ;
+
+			_delay_ms(10);
+
+		}
+
+
+	}
+
+
+}
+
+
+#endif
+
+
+
+
+
+
+#if TIMER0_APP == RUN
+
+
+//void TogglePinValue (void) ;
+
+int main(void)
+{
+
+
+	MDIO_vSetPinDirection( MDIO_PORTB, MDIO_PIN3, MDIO_OUTPUT ) ;
+
+	MTIMER0_vInit( ) ;
+
+	//MTIMERS_vSetInterval_CTC_Asynch( TIMER0, TIMER0_CompareValue, TIMER0_IntervalCounts, TogglePinValue ) ;
+
+	//MGIE_vEnableGlobalInterrupt();
+
+	MTIMERS_vStartTimer( TIMER0 ) ;
+
+	while( TRUE )
+	{
+
+		//fade in
+		for( u8 L_u8Iteration = Initialized_by_Zero; L_u8Iteration < 255; L_u8Iteration++ )
+		{
+
+			MTIMERS_vSetCompareValue( TIMER0, L_u8Iteration ) ;
+			_delay_ms(100);
+
+		}
+
+
+	}
+
+
+}
+
+
+
+//void TogglePinValue (void)
+//{
+//
+//	MDIO_vTogglePinValue( MDIO_PORTB, MDIO_PIN0 ) ;
+//
+//	_delay_ms(100);
+//
+//}
+
+
+
+
+#endif
+
+
+
+
+#if ADC_MAPPING == RUN
+
+
+int main(void)
+{
+
+	MADC_vInit();
+
+	HLCD_vInit();
+
+	u16 L_u16ADCValue = Initialized_by_Zero ;
+
+	u32 ADC_Output = Initialized_by_Zero ;
+
+	MDIO_vSetPortDirection( MDIO_PORTD, MDIO_OUTPUT ) ;
+
+	while( TRUE )
+	{
+
+		L_u16ADCValue = MADC_u16ConvertAnalog_to_Digital( CHANNEL_00 ) ;
+
+		ADC_Output = MDIO_u32MappingValue( L_u16ADCValue, Input_Min, Input_Max, Output_Min, Output_Max ) ;
+
+
+		if( ADC_Output > 32 )  { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN0, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 64 )  { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN1, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 96 )  { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN2, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 128 ) { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN3, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 160 ) { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN4, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 192 ) { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN5, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 224 ) { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN6, MDIO_PIN_HIGH ) ; }
+
+		if( ADC_Output > 254 ) { MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN7, MDIO_PIN_HIGH ) ; }
+
+
+		HLCD_vClear();
+
+		HLCD_vDispNumber( L_u16ADCValue ) ;
+
+		HLCD_vGoTo( HLCD_LINE2, HLCD_Square1 ) ;
+
+		HLCD_vDispNumber( ADC_Output ) ;
+
+		_delay_ms( 300 ) ;
+
+	}
+
+
+
+
+}
+
+
+#endif
 
 
 
@@ -130,8 +444,9 @@ int main(void)
 #if ADC_INTERRUPT == RUN
 
 
-volatile u16 G_u16ADC_Data = 0 ;
+volatile u16 G_u16ADC_Data = Initialized_by_Zero ;
 
+volatile u8 G_u8StartConversionFlag = Initialized_by_Zero ;
 
 void ADC_APP (void) ;
 
@@ -153,12 +468,18 @@ int main(void)
 	{
 
 		//L_u16ADCValue = MADC_u16ConvertAnalog_to_Digital( CHANNEL_00 ) ;
+		if( G_u8StartConversionFlag == Flag_is_Set )
+		{
 
-		HLCD_vClear();
+			G_u8StartConversionFlag = Flag_is_Cleared ;
 
-		HLCD_vDispNumber( G_u16ADC_Data ) ;
+			HLCD_vClear();
 
-		_delay_ms( 300 ) ;
+			HLCD_vDispNumber( G_u16ADC_Data ) ;
+
+			_delay_ms( 300 ) ;
+
+		}
 
 	}
 
@@ -181,6 +502,8 @@ void ADC_APP (void)
 	 G_u16ADC_Data = MADC_GetADCData();
 
 	 MADC_vStartConversion( CHANNEL_01 ) ;
+
+	 G_u8StartConversionFlag = Flag_is_Set ;
 
 }
 

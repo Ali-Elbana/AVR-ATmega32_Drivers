@@ -262,8 +262,21 @@ void MDIO_vTogglePinValue( u8 A_u8PortNum, u8 A_u8PinNum )
 
 
 
+s32 MDIO_s32MappingValue 	( s32 A_s32InputValue ,s32 A_s32InputMin, s32 A_s32InputMax, s32 A_s32OutputMin,
+							  s32 A_s32OutputMax )
+{
+
+	s32 L_s32OutputValue = Initialized_by_Zero ;
+
+
+	L_s32OutputValue = (  ( ( A_s32InputValue - A_s32InputMin ) * ( A_s32OutputMax - A_s32OutputMin ) ) / ( A_s32InputMax - A_s32InputMin )  ) + A_s32OutputMin ;
+
+
+	return L_s32OutputValue ;
+
+}
 
 
 
-
-
+/**************************************************************************************************************/
+/*************************************************************************************************************/
