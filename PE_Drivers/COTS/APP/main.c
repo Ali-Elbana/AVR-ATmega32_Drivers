@@ -13,6 +13,10 @@
 #include "../MCAL/MEXTI/MEXTI_interface.h"
 #include "../MCAL/MADC/MADC_interface.h"
 #include "../MCAL/MTimers/MTimers_interface.h"
+#include "../MCAL/MWatchDogTimer/MWatchDogTimer_interface.h"
+#include "../MCAL/MUART/MUART_interface.h"
+#include "../MCAL/MSPI/MSPI_interface.h"
+
 #include "../HAL/HSSD/HSSD_inter.h"
 #include "../HAL/HKEYPAD/HKEYPAD_inter.h"
 #include "../HAL/HLCD/HLCD_inter.h"
@@ -34,7 +38,118 @@
 #define ADC_MAPPING		STOP
 #define TIMER0_APP		STOP
 #define TIMER1_APP		STOP
-#define ICU_APP			RUN
+#define ICU_APP			STOP
+#define WDT_APP			STOP
+#define UART_APP		STOP
+#define SPI_APP			RUN
+
+
+
+
+#if SPI_APP == RUN
+
+int main(void)
+{
+
+	u8 L_u8Char = Initialized_by_Zero ;
+
+	MDIO_vSetPinDirection( MDIO_PORTB, MDIO_PIN3, MDIO_OUTPUT ) ; // LED for testing.
+
+	MDIO_vSetPinValue( MDIO_PORTB, MDIO_PIN3, MDIO_PIN_LOW ) ;
+
+	MSPI_vInit( ) ;
+
+	L_u8Char = MSPI_u8Transecieve( 'A' ) ;
+
+
+	if( L_u8Char == 'A' )
+	{
+		MDIO_vSetPinValue( MDIO_PORTB, MDIO_PIN3, MDIO_PIN_HIGH ) ;
+	}
+
+	else
+	{
+		MDIO_vSetPinValue( MDIO_PORTB, MDIO_PIN3, MDIO_PIN_LOW ) ;
+	}
+
+
+	while( TRUE )
+	{
+
+
+
+	}
+
+
+}
+
+
+#endif
+
+
+
+
+
+#if UART_APP == RUN
+
+
+
+
+int main(void)
+{
+
+	MUART_vInit( ) ;
+
+	MUART_vTransmit( 'A' ) ;
+
+	while( TRUE )
+	{
+
+
+	}
+
+
+}
+
+
+#endif
+
+
+
+
+
+#if WDT_APP == RUN
+
+
+
+
+int main(void)
+{
+
+	MDIO_vSetPinDirection( MDIO_PORTD, MDIO_PIN0, MDIO_OUTPUT ) ;
+
+	MWDT_vTurnOn( WDT_1s_5V ) ;
+
+	MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN0, MDIO_PIN_HIGH ) ;
+
+	_delay_ms( 500 ) ;
+
+	MDIO_vSetPinValue( MDIO_PORTD, MDIO_PIN0, MDIO_PIN_LOW ) ;
+
+	MWDT_vTurnOff( ) ;
+
+	while( TRUE )
+	{
+
+
+	}
+
+
+}
+
+
+#endif
+
 
 
 

@@ -8,6 +8,10 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../MCAL/MADC/MADC_interface.h \
   ../COTS/APP/../MCAL/MADC/MADC_private.h \
   ../COTS/APP/../MCAL/MTimers/MTimers_interface.h \
+  ../COTS/APP/../MCAL/MWatchDogTimer/MWatchDogTimer_interface.h \
+  ../COTS/APP/../MCAL/MWatchDogTimer/MWatchDogTimer_private.h \
+  ../COTS/APP/../MCAL/MUART/MUART_interface.h \
+  ../COTS/APP/../MCAL/MSPI/MSPI_interface.h \
   ../COTS/APP/../HAL/HSSD/HSSD_inter.h \
   ../COTS/APP/../HAL/HSSD/../../LIB/LSTD_TYPES.h \
   ../COTS/APP/../HAL/HSSD/HSSD_private.h \
@@ -38,6 +42,14 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 ../COTS/APP/../MCAL/MADC/MADC_private.h:
 
 ../COTS/APP/../MCAL/MTimers/MTimers_interface.h:
+
+../COTS/APP/../MCAL/MWatchDogTimer/MWatchDogTimer_interface.h:
+
+../COTS/APP/../MCAL/MWatchDogTimer/MWatchDogTimer_private.h:
+
+../COTS/APP/../MCAL/MUART/MUART_interface.h:
+
+../COTS/APP/../MCAL/MSPI/MSPI_interface.h:
 
 ../COTS/APP/../HAL/HSSD/HSSD_inter.h:
 

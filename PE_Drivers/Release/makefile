@@ -8,7 +8,10 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include COTS/MCAL/MWatchDogTimer/subdir.mk
+-include COTS/MCAL/MUART/subdir.mk
 -include COTS/MCAL/MTimers/subdir.mk
+-include COTS/MCAL/MSPI/subdir.mk
 -include COTS/MCAL/MGIE/subdir.mk
 -include COTS/MCAL/MEXTI/subdir.mk
 -include COTS/MCAL/MDIO/subdir.mk

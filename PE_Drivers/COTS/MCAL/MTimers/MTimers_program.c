@@ -1355,8 +1355,6 @@ void MTIMERS_vSetCallBack( u8 A_u8TimerID, u8 A_u8InterruptType, void (*A_Fptr)(
 {
 
 
-
-
 	switch( A_u8TimerID )
 	{
 
