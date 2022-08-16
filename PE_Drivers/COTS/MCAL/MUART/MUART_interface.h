@@ -30,8 +30,20 @@ u8   MUART_u8CompareString( c8 *String1, c8 *String2 ) ;
 
 void MUART_vFlush( void ) ;
 
+
+/*************************** Interrupt APIs *******************************/
+
+void MUART_vEnableInterrupt( u8 A_u8InterruptID ) ;
+
+void MUART_vDisableInterrupt( u8 A_u8InterruptID ) ;
+
+void MUART_vTransmit_Asynch( c8 A_c8MyString[], void (*A_Fptr)(void) ) ;
+
+void MUART_vRecieve_Asynch ( c8 A_c8YourString[], void (*A_Fptr)(void) ) ;
+
 void MUART_vSetCallBack( u8 A_u8ISR_ID, void (*A_Fptr)(void) ) ;
 
+/*************************************************************************/
 
 
 #define BaudRate_2400 	207
@@ -61,6 +73,12 @@ void MUART_vSetCallBack( u8 A_u8ISR_ID, void (*A_Fptr)(void) ) ;
 #define RXC_ISR 	1
 #define UDRE_ISR	2
 #define TXC_ISR		3
+
+#define RXC_INT 	1
+#define UDRE_INT	2
+#define TXC_INT		3
+
+
 
 
 #endif //_MUART_interface_H

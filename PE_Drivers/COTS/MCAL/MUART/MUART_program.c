@@ -16,6 +16,13 @@
 
 static void (*GS_Global_UART_CallBack[UART_ISR_Options])(void) = { NULL } ;
 
+static u8* GS_Pu8Internal_TXBuffer = NULL ;
+
+static u16 GS_u16TXBufferCounter = Initialized_by_Zero ;
+
+static u8* GS_Pu8Internal_RXBuffer = NULL ;
+
+static u16 GS_u16RXBufferCounter = Initialized_by_Zero ;
 
 /*************************************************************/
 /*************************************************************/
@@ -235,11 +242,9 @@ void MUART_vENABLE( void )
 void MUART_vDISABLE( void )
 {
 
-
 	// DISABLE RX and TX.
 	CLR_BIT( UCSRB, UCSRB_RXEN ) ;
 	CLR_BIT( UCSRB, UCSRB_TXEN ) ;
-
 
 }
 
@@ -261,13 +266,12 @@ void MUART_vRecieveString( c8 A_c8YourString[] )
 
 	A_c8YourString[L_u32Counter] = MUART_u8Receive( ) ;
 
-
 	while( A_c8YourString[L_u32Counter] != '\0' )
 	{
+
 		L_u32Counter++ ;
 
 		A_c8YourString[L_u32Counter] = MUART_u8Receive( ) ;
-
 
 		if( (A_c8YourString[L_u32Counter] == '\n') || (A_c8YourString[L_u32Counter] == '\r') )
 		{
@@ -338,6 +342,90 @@ void MUART_vFlush( void )
 
 }
 
+
+/*************************************************************/
+/*************************************************************/
+
+void MUART_vEnableInterrupt( u8 A_u8InterruptID )
+{
+
+	switch( A_u8InterruptID )
+	{
+
+		case RXC_INT :  SET_BIT( UCSRB, UCSRB_RXCIE ) ; break;
+
+	    case UDRE_INT:  SET_BIT( UCSRB, UCSRB_UDRIE ) ; break;
+
+	    case TXC_INT :  SET_BIT( UCSRB, UCSRB_TXCIE ) ; break;
+
+	}
+
+}
+
+/*************************************************************/
+/*************************************************************/
+
+void MUART_vDisableInterrupt( u8 A_u8InterruptID )
+{
+
+	switch( A_u8InterruptID )
+	{
+
+		case RXC_INT :  CLR_BIT( UCSRB, UCSRB_RXCIE ) ; break;
+
+	    case UDRE_INT:  CLR_BIT( UCSRB, UCSRB_UDRIE ) ; break;
+
+	    case TXC_INT :  CLR_BIT( UCSRB, UCSRB_TXCIE ) ; break;
+
+	}
+
+}
+
+/*************************************************************/
+/*************************************************************/
+
+void MUART_vTransmit_Asynch( c8 A_c8MyString[], void (*A_Fptr)(void) )
+{
+
+	GS_Global_UART_CallBack[UART_ISR_TXC]  = A_Fptr ;
+
+	GS_Pu8Internal_TXBuffer = A_c8MyString ;
+
+	MUART_vEnableInterrupt( TXC_INT ) ;
+
+	// In case empty transmit buffer.
+	if ( GET_BIT(UCSRA, UCSRA_UDRE) == 0 )
+	{
+
+		UDR = A_c8MyString[0] ;
+
+		GS_u16TXBufferCounter++ ;
+
+	}
+
+	else
+	{
+
+		// #error "The transmit buffer isn't empty yet"
+
+	}
+
+}
+
+/*************************************************************/
+/*************************************************************/
+
+void MUART_vRecieve_Asynch( c8 A_c8YourString[], void (*A_Fptr)(void) )
+{
+
+	GS_Global_UART_CallBack[UART_ISR_RXC]  = A_Fptr ;
+
+	GS_Pu8Internal_RXBuffer = A_c8YourString ;
+
+	MUART_vEnableInterrupt( RXC_INT ) ;
+
+}
+
 /*************************************************************/
 /*************************************************************/
 
@@ -355,8 +443,6 @@ void MUART_vSetCallBack( u8 A_u8ISR_ID, void (*A_Fptr)(void) )
 
 	}
 
-
-
 }
 
 /*************************************************************/
@@ -365,7 +451,6 @@ void MUART_vSetCallBack( u8 A_u8ISR_ID, void (*A_Fptr)(void) )
 UART_RXC_ISR
 {
 
-
 	if ( GS_Global_UART_CallBack[UART_ISR_RXC] != NULL )
 	{
 
@@ -373,6 +458,18 @@ UART_RXC_ISR
 
 	}
 
+	if( (GS_Pu8Internal_RXBuffer[GS_u16RXBufferCounter] != '\n') ||
+		(GS_Pu8Internal_RXBuffer[GS_u16RXBufferCounter] != '\r') )
+	{
+		GS_Pu8Internal_RXBuffer[GS_u16RXBufferCounter] = UDR ;
+
+		GS_u16RXBufferCounter ++ ;
+	}
+
+	else
+	{
+		GS_Pu8Internal_RXBuffer[GS_u16RXBufferCounter] = '\0' ;
+	}
 
 }
 
@@ -400,11 +497,24 @@ UART_UDRE_ISR
 UART_TXC_ISR
 {
 
-
 	if ( GS_Global_UART_CallBack[UART_ISR_TXC] != NULL )
 	{
 
 		GS_Global_UART_CallBack[UART_ISR_TXC]( ) ;
+
+	}
+
+	if( GS_Pu8Internal_TXBuffer[GS_u16TXBufferCounter] != '\0' )
+	{
+		UDR = GS_Pu8Internal_TXBuffer[ GS_u16TXBufferCounter ] ;
+
+		GS_u16TXBufferCounter++ ;
+	}
+
+	else
+	{
+
+		MUART_vDisableInterrupt( TXC_INT ) ;
 
 	}
 
@@ -414,14 +524,6 @@ UART_TXC_ISR
 
 /*************************************************************/
 /*************************************************************/
-
-
-
-
-
-
-
-
 
 
 

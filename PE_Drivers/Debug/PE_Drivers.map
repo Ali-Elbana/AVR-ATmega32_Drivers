@@ -69,6 +69,7 @@ LOAD ./COTS/HAL/HLM35/HLM35_program.o
 LOAD ./COTS/HAL/HLDR/HLDR_program.o
 LOAD ./COTS/HAL/HLCD/HLCD_progr.o
 LOAD ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+LOAD ./COTS/HAL/HEEPROM/HEEPROM_program.o
 LOAD ./COTS/HAL/HDCM/HDCM_program.o
 LOAD ./COTS/APP/main.o
 LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
@@ -165,7 +166,7 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x513a
+.text           0x00000000     0x5306
  *(.vectors)
  .vectors       0x00000000       0x54 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -244,6 +245,7 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
  .text          0x00000092        0x0 ./COTS/HAL/HLDR/HLDR_program.o
  .text          0x00000092        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
  .text          0x00000092        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .text          0x00000092        0x0 ./COTS/HAL/HEEPROM/HEEPROM_program.o
  .text          0x00000092        0x0 ./COTS/HAL/HDCM/HDCM_program.o
  .text          0x00000092        0x0 ./COTS/APP/main.o
  .text          0x00000092        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
@@ -571,40 +573,46 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
  .text.HKEYPAD_u8Getpressed
                 0x00004dba      0x190 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
                 0x00004dba                HKEYPAD_u8Getpressed
+ .text.HEEPROM_vWriteByte
+                0x00004f4a       0x60 ./COTS/HAL/HEEPROM/HEEPROM_program.o
+                0x00004f4a                HEEPROM_vWriteByte
+ .text.HEEPROM_u8ReadByte
+                0x00004faa       0x72 ./COTS/HAL/HEEPROM/HEEPROM_program.o
+                0x00004faa                HEEPROM_u8ReadByte
  .text.HDCM_vRotateMotor
-                0x00004f4a       0x86 ./COTS/HAL/HDCM/HDCM_program.o
-                0x00004f4a                HDCM_vRotateMotor
+                0x0000501c       0x86 ./COTS/HAL/HDCM/HDCM_program.o
+                0x0000501c                HDCM_vRotateMotor
  .text.HDCM_vRotate_CW
-                0x00004fd0        0xe ./COTS/HAL/HDCM/HDCM_program.o
-                0x00004fd0                HDCM_vRotate_CW
+                0x000050a2        0xe ./COTS/HAL/HDCM/HDCM_program.o
+                0x000050a2                HDCM_vRotate_CW
  .text.HDCM_vRotate_CCW
-                0x00004fde        0xe ./COTS/HAL/HDCM/HDCM_program.o
-                0x00004fde                HDCM_vRotate_CCW
+                0x000050b0        0xe ./COTS/HAL/HDCM/HDCM_program.o
+                0x000050b0                HDCM_vRotate_CCW
  .text.HDCM_vStopMotor
-                0x00004fec       0x32 ./COTS/HAL/HDCM/HDCM_program.o
-                0x00004fec                HDCM_vStopMotor
- .text.main     0x0000501e       0x4a ./COTS/APP/main.o
-                0x0000501e                main
- .text.libgcc   0x00005068       0x26 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
-                0x00005068                __divmodhi4
-                0x00005068                _div
- .text.libgcc   0x0000508e        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x0000508e        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x0000508e        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x0000508e       0x28 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000508e                __udivmodhi4
- .text.libgcc   0x000050b6       0x38 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x000050b6                __prologue_saves__
- .text.libgcc   0x000050ee       0x36 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x000050ee                __epilogue_restores__
+                0x000050be       0x32 ./COTS/HAL/HDCM/HDCM_program.o
+                0x000050be                HDCM_vStopMotor
+ .text.main     0x000050f0      0x144 ./COTS/APP/main.o
+                0x000050f0                main
+ .text.libgcc   0x00005234       0x26 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
+                0x00005234                __divmodhi4
+                0x00005234                _div
+ .text.libgcc   0x0000525a        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000525a        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000525a        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x0000525a       0x28 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x0000525a                __udivmodhi4
+ .text.libgcc   0x00005282       0x38 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x00005282                __prologue_saves__
+ .text.libgcc   0x000052ba       0x36 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x000052ba                __epilogue_restores__
  .text.avr-libc
-                0x00005124       0x12 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strcmp.o)
-                0x00005124                strcmp
-                0x00005136                . = ALIGN (0x2)
+                0x000052f0       0x12 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a(strcmp.o)
+                0x000052f0                strcmp
+                0x00005302                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00005136        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00005136                exit
-                0x00005136                _exit
+ .fini9         0x00005302        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00005302                exit
+                0x00005302                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -623,11 +631,11 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00005136        0x4 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00005302        0x4 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000513a                _etext = .
+                0x00005306                _etext = .
 
-.data           0x00800060       0x22 load address 0x0000513a
+.data           0x00800060       0x22 load address 0x00005306
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -645,6 +653,7 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
  .data          0x00800060        0x0 ./COTS/HAL/HLDR/HLDR_program.o
  .data          0x00800060        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
  .data          0x00800060        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .data          0x00800060        0x0 ./COTS/HAL/HEEPROM/HEEPROM_program.o
  .data          0x00800060        0x0 ./COTS/HAL/HDCM/HDCM_program.o
  .data          0x00800060        0x0 ./COTS/APP/main.o
  .data          0x00800060        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
@@ -698,6 +707,7 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
  .bss           0x00800082        0x0 ./COTS/HAL/HLDR/HLDR_program.o
  .bss           0x00800082        0x0 ./COTS/HAL/HLCD/HLCD_progr.o
  .bss           0x00800082        0x0 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
+ .bss           0x00800082        0x0 ./COTS/HAL/HEEPROM/HEEPROM_program.o
  .bss           0x00800082        0x0 ./COTS/HAL/HDCM/HDCM_program.o
  .bss           0x00800082        0x0 ./COTS/APP/main.o
  .bss           0x00800082        0x0 d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodhi4.o)
@@ -752,8 +762,8 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
                 0x008000a6                MADC_vpPointerToFunction
  *(COMMON)
                 0x008000a8                PROVIDE (__bss_end, .)
-                0x0000513a                __data_load_start = LOADADDR (.data)
-                0x0000515c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00005306                __data_load_start = LOADADDR (.data)
+                0x00005328                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008000a8        0x0
                 0x008000a8                PROVIDE (__noinit_start, .)
@@ -778,7 +788,7 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x5844
+.stab           0x00000000     0x5c88
  *(.stab)
  .stab          0x00000000      0x1ec ./COTS/MCAL/MWatchDogTimer/MWatchDogTimer_program.o
  .stab          0x000001ec      0x6e4 ./COTS/MCAL/MUART/MUART_program.o
@@ -807,14 +817,16 @@ LOAD d:/imt_avr/embedded system/sdk/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3
                                0x1b30 (size before relaxing)
  .stab          0x00004fd4      0x390 ./COTS/HAL/HKEYPAD/HKEYPAD_prog.o
                                 0x528 (size before relaxing)
- .stab          0x00005364      0x294 ./COTS/HAL/HDCM/HDCM_program.o
+ .stab          0x00005364      0x384 ./COTS/HAL/HEEPROM/HEEPROM_program.o
+                                0x390 (size before relaxing)
+ .stab          0x000056e8      0x294 ./COTS/HAL/HDCM/HDCM_program.o
                                 0x2a0 (size before relaxing)
- .stab          0x000055f8      0x24c ./COTS/APP/main.o
-                                0x3e4 (size before relaxing)
+ .stab          0x0000597c      0x30c ./COTS/APP/main.o
+                                0x4a4 (size before relaxing)
 
-.stabstr        0x00000000     0x2048
+.stabstr        0x00000000     0x2140
  *(.stabstr)
- .stabstr       0x00000000     0x2048 ./COTS/MCAL/MWatchDogTimer/MWatchDogTimer_program.o
+ .stabstr       0x00000000     0x2140 ./COTS/MCAL/MWatchDogTimer/MWatchDogTimer_program.o
 
 .stab.excl
  *(.stab.excl)

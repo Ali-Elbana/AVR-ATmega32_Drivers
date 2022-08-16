@@ -12,6 +12,7 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../MCAL/MWatchDogTimer/MWatchDogTimer_private.h \
   ../COTS/APP/../MCAL/MUART/MUART_interface.h \
   ../COTS/APP/../MCAL/MSPI/MSPI_interface.h \
+  ../COTS/APP/../MCAL/MI2C/MI2C_interface.h \
   ../COTS/APP/../HAL/HSSD/HSSD_inter.h \
   ../COTS/APP/../HAL/HSSD/../../LIB/LSTD_TYPES.h \
   ../COTS/APP/../HAL/HSSD/HSSD_private.h \
@@ -21,7 +22,8 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
   ../COTS/APP/../HAL/HLCD/../../LIB/LSTD_TYPES.h \
   ../COTS/APP/../HAL/HDCM/HDCM_interface.h \
   ../COTS/APP/../HAL/HLM35/HLM35_interface.h \
-  ../COTS/APP/../HAL/HLDR/HLDR_interface.h
+  ../COTS/APP/../HAL/HLDR/HLDR_interface.h \
+  ../COTS/APP/../HAL/HEEPROM/HEEPROM_interface.h
 
 ../COTS/APP/../LIB/LBITMATH.h:
 
@@ -51,6 +53,8 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 
 ../COTS/APP/../MCAL/MSPI/MSPI_interface.h:
 
+../COTS/APP/../MCAL/MI2C/MI2C_interface.h:
+
 ../COTS/APP/../HAL/HSSD/HSSD_inter.h:
 
 ../COTS/APP/../HAL/HSSD/../../LIB/LSTD_TYPES.h:
@@ -70,3 +74,5 @@ COTS/APP/main.o COTS/APP/main.o: ../COTS/APP/main.c \
 ../COTS/APP/../HAL/HLM35/HLM35_interface.h:
 
 ../COTS/APP/../HAL/HLDR/HLDR_interface.h:
+
+../COTS/APP/../HAL/HEEPROM/HEEPROM_interface.h:

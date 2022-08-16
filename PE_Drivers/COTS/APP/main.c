@@ -43,10 +43,36 @@
 #define ICU_APP			STOP
 #define WDT_APP			STOP
 #define UART_APP		STOP
+#define UART_INT_APP	RUN
 #define SPI_APP			STOP
-#define EEPROM_APP		RUN
+#define EEPROM_APP		STOP
 
 
+
+
+
+#if UART_INT_APP == RUN
+
+
+int main(void)
+{
+
+	MUART_vInit( ) ;
+
+	c8 L_c8MyName = "Ali" ;
+
+	MUART_vTransmit_Asynch( L_c8MyName, NULL ) ;
+
+	while( TRUE )
+	{
+
+
+	}
+
+}
+
+
+#endif
 
 
 
