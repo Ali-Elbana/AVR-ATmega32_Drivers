@@ -16,6 +16,7 @@
 #include "../MCAL/MWatchDogTimer/MWatchDogTimer_interface.h"
 #include "../MCAL/MUART/MUART_interface.h"
 #include "../MCAL/MSPI/MSPI_interface.h"
+#include "../MCAL/MI2C/MI2C_interface.h"
 
 #include "../HAL/HSSD/HSSD_inter.h"
 #include "../HAL/HKEYPAD/HKEYPAD_inter.h"
@@ -23,6 +24,7 @@
 #include "../HAL/HDCM/HDCM_interface.h"
 #include "../HAL/HLM35/HLM35_interface.h"
 #include "../HAL/HLDR/HLDR_interface.h"
+#include "../HAL/HEEPROM/HEEPROM_interface.h"
 
 #include "util/delay.h"
 
@@ -41,7 +43,55 @@
 #define ICU_APP			STOP
 #define WDT_APP			STOP
 #define UART_APP		STOP
-#define SPI_APP			RUN
+#define SPI_APP			STOP
+#define EEPROM_APP		RUN
+
+
+
+
+
+#if EEPROM_APP == RUN
+
+int main(void)
+{
+
+	u8 L_u8Char = Initialized_by_Zero ;
+
+	MDIO_vSetPinDirection( MDIO_PORTA, MDIO_PIN0, MDIO_OUTPUT ) ; // LED for testing.
+
+	MDIO_vSetPinValue( MDIO_PORTA, MDIO_PIN0, MDIO_PIN_LOW ) ;
+
+	MI2C_vInit( ) ;
+
+	HEEPROM_vWriteByte( 'A' , EEPROM_ADDRESS ) ;
+
+	_delay_ms( 10 ) ;
+
+	L_u8Char = HEEPROM_u8ReadByte( EEPROM_ADDRESS ) ;
+
+	if( L_u8Char == 'A' )
+	{
+		MDIO_vSetPinValue( MDIO_PORTA, MDIO_PIN0, MDIO_PIN_HIGH ) ;
+	}
+
+	else
+	{
+		MDIO_vSetPinValue( MDIO_PORTA, MDIO_PIN0, MDIO_PIN_LOW ) ;
+	}
+
+
+	while( TRUE )
+	{
+
+
+
+	}
+
+
+}
+
+
+#endif
 
 
 

@@ -8,7 +8,22 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include COTS/MCAL/MWatchDogTimer/subdir.mk
+-include COTS/MCAL/MUART/subdir.mk
+-include COTS/MCAL/MTimers/subdir.mk
+-include COTS/MCAL/MSPI/subdir.mk
+-include COTS/MCAL/MI2C/subdir.mk
+-include COTS/MCAL/MGIE/subdir.mk
+-include COTS/MCAL/MEXTI/subdir.mk
 -include COTS/MCAL/MDIO/subdir.mk
+-include COTS/MCAL/MADC/subdir.mk
+-include COTS/HAL/HSSD/subdir.mk
+-include COTS/HAL/HLM35/subdir.mk
+-include COTS/HAL/HLDR/subdir.mk
+-include COTS/HAL/HLCD/subdir.mk
+-include COTS/HAL/HKEYPAD/subdir.mk
+-include COTS/HAL/HEEPROM/subdir.mk
+-include COTS/HAL/HDCM/subdir.mk
 -include COTS/APP/subdir.mk
 -include subdir.mk
 -include objects.mk
